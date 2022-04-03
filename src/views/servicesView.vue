@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "aboutView",
+  name: "servicesView",
   components: {},
 };
 </script>
