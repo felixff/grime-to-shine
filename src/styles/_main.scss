@@ -109,3 +109,9 @@ a {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Grafitty';
+  src: url('@/styles/fonts/grafitty/grafitty.woff') format('woff'), url('@/styles/fonts/grafitty/grafitty.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}

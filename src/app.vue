@@ -7,7 +7,7 @@
       <router-link to="/contact">Contact</router-link>
     </nav>
     <div class="logo">
-      <img src="@/assets/temp-logo.png" alt="Company Logo" />
+      <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo" />
     </div>
     <div class="book-socials">
       <div class="socials">
@@ -19,7 +19,6 @@
       </div>
     </div>
   </div>
-
   <router-view />
 </template>
 
@@ -41,19 +40,22 @@ html {
 .nav-bar {
   position: sticky;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.3fr 1fr;
+  grid-template-rows: 8em;
 
   nav {
     grid-column: 1;
     display: flex;
-    justify-content: center;
+    margin-left: 5em;
+    justify-content: flex-start;
     align-items: center;
     gap: 1.5em;
 
     a {
       color: $secondary;
-      font-family: DrippingMarker, sans-serif;
-      font-size: 2rem;
+      font-family: Grafitty, sans-serif;
+      font-size: 1.5rem;
+      font-weight: bolder;
 
       &:hover {
         color: $primary;
@@ -70,22 +72,22 @@ html {
     display: flex;
     align-content: center;
     justify-content: center;
+    align-items: center;
 
     img {
-      border-radius: 50%;
+      max-height: 80%;
     }
   }
 
   .book-socials {
     grid-column: 3;
     color: $secondary;
-    font-family: DrippingMarker, sans-serif;
+    font-family: Grafitty, sans-serif;
     display: flex;
     gap: 0.5em;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transform: translateY(-1.5em);
 
     .socials {
       display: flex;
@@ -103,8 +105,9 @@ html {
     }
 
     a {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: $secondary;
+      font-weight: bolder;
 
       &:hover {
         cursor: pointer;

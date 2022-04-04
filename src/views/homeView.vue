@@ -1,6 +1,6 @@
 <template>
   <div class="section bg-white">
-    <img src="@/assets/temp-van.png" alt="Van Image">
+    <img src="@/assets/img/temp-van.png" alt="Van Image">
   </div>
   <div class="section bg-gray-500">
     <h1>About Us</h1>
@@ -17,7 +17,7 @@
 
 <script>
 import Booking from '@/components/booking.vue';
-import AboutUs from '@/components/aboutUs.vue';
+import AboutUs from '@/components/meetTheTeam.vue';
 
 export default {
   name: "homeView",
