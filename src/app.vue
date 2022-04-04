@@ -55,6 +55,10 @@ html {
       font-family: DrippingMarker, sans-serif;
       font-size: 2rem;
 
+      &:hover {
+        color: $primary;
+      }
+
       &.router-link-exact-active {
         color: $primary;
       }
