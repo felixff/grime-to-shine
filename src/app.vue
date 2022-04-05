@@ -1,47 +1,52 @@
 <template>
-  <div class="nav-bar">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">Services</router-link>
-      <router-link to="/services">About Us</router-link>
-      <router-link to="/contact">Contact</router-link>
-    </nav>
-    <div class="logo">
-      <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo" />
-    </div>
-    <div class="book-socials">
-      <div class="socials">
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-instagram"></i>
+  <div id="app">
+    <div class="nav-bar">
+      <nav>
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">Services</router-link>
+        <router-link to="/services">About Us</router-link>
+        <router-link to="/contact">Contact</router-link>
+      </nav>
+      <div class="logo">
+        <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
       </div>
-      <div class="book">
-        <a href="#booking">Book Now</a>
+      <div class="book-socials">
+        <div class="socials">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+        <div class="book">
+          <a href="#booking-system">Book Now</a>
+        </div>
       </div>
     </div>
+    <router-view/>
+    <footer>
+      <small style="position: absolute; left: 0">Copyright &copy; 2022, GrimeToShine</small>
+    </footer>
   </div>
-  <router-view />
 </template>
 
 <style lang="scss">
-html {
-  background-color: $background-primary;
-}
-
 #app {
-  background-color: $background-primary;
+  background-color: $primary;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 .nav-bar {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 0.3fr 1fr;
   grid-template-rows: 8em;
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 99;
 
   nav {
     grid-column: 1;
@@ -58,11 +63,11 @@ html {
       font-weight: bolder;
 
       &:hover {
-        color: $primary;
+        color: $tertiary;
       }
 
       &.router-link-exact-active {
-        color: $primary;
+        color: $tertiary;
       }
     }
   }
@@ -98,7 +103,7 @@ html {
 
       svg {
         &:hover {
-          color: $primary !important;
+          color: $tertiary !important;
           cursor: pointer;
         }
       }
@@ -111,7 +116,7 @@ html {
 
       &:hover {
         cursor: pointer;
-        color: $primary;
+        color: $tertiary;
       }
     }
   }

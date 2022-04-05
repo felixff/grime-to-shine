@@ -41,6 +41,24 @@ body {
   line-height: 1.5;
 }
 
+footer {
+  height: 10em;
+  background: $tertiary;
+  //border-radius: 100% 0 0 0;
+
+  &:after {
+    content: "";
+    position:absolute;
+    margin: auto;
+    width: 20em;
+    height: 20em;
+    background-color: $primary; /* to see where it is */
+    overflow: hidden;
+    z-index: 0;
+    transform: translate(-50%, -70%) rotate(45deg);
+  }
+}
+
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;

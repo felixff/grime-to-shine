@@ -1,8 +1,10 @@
 <template>
-  <div class="section"></div>
-  <div class="section"></div>
-  <div class="section"></div>
-  <div class="section"></div>
+  <div class="container__services">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+  </div>
 </template>
 
 <script>
@@ -11,3 +13,6 @@ export default {
   components: {},
 };
 </script>
+<style lang="scss">
+
+</style>

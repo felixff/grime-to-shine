@@ -1,24 +1,37 @@
 <template>
-  <div>
-    <DatePicker v-model="date"></DatePicker>
+  <div class="booking-system-container">
+    <date-picker v-model="date" :clearable="true" :inputFormat="'dd.mm.yyyy'"></date-picker>
   </div>
 </template>
 <script>
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import DatePicker from 'vue3-datepicker';
 
 export default {
-  name: 'bookingComponent',
-  components: [
-    Datepicker
-  ],
+  // eslint-disable-next-line
+  name: 'booking',
+  components: {
+    DatePicker
+  },
   data() {
     return {
-      date: null
+      date: new Date()
     }
   },
 }
 </script>
-<style lang="">
-  
+<style lang="scss">
+  .booking-system-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    .v3dp__datepicker {
+      position: relative;
+
+      .v3dp__popout {
+        background-color: black !important;
+        position: absolute;
+      }
+    }
+  }
 </style>

@@ -1,3 +1,4 @@
+
 .half-screen-height {
   height: $half-screen-height;
 }
@@ -8,4 +9,22 @@
 
 .hidden {
   display: none !important;
+}
+
+.transparent {
+  opacity: 0;
+}
+
+.fadeInOutAnimation {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
+}
+
+.section-header {
+  font-size: 2rem;
+  font-family: Grafitty, sans-serif;
+  color: $secondary;
+  font-weight: bolder;
+  margin-bottom: 4em;
 }

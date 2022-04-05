@@ -1,8 +1,8 @@
 <template>
-  <div v-for="(contact, index) in contacts" :key="index">
-    <div>
-      <h1>{{ contact }}</h1>
-      <div>
+  <div class="container__contact">
+    <div class="team-member" v-for="(contact, index) in contacts" :key="index">
+      <h1 class="team-member-name">{{ contact }}</h1>
+      <div class="description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec
         tincidunt lorem. Aenean et tortor ac mi sollicitudin viverra.
         Pellentesque mollis lacinia eros, vitae mattis tellus sagittis a.
@@ -13,19 +13,42 @@
         sodales ornare ipsum. Donec vitae pretium libero.
       </div>
     </div>
-    <img src="" alt="Contact Image" />
+<!--    <img src="" alt="Contact Image" />-->
   </div>
 </template>
 
 <script>
 export default {
-  name: "aboutUs",
+  name: "meetTheTeam",
   props: {
     "contacts" : {
-      default: [ 'Test' ]
+      default: [ 'Felix' , 'Ben']
     }
   },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.container__contact {
+  max-width: 70%;
+  margin: 5em auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2em;
+
+  .team-member{
+    width: 90%;
+    color: $tertiary-calmer;
+
+    .team-member-name {
+      font-size: 2rem;
+      font-family: Grafitty, sans-serif;
+      font-weight: bold;
+    }
+
+    .description {
+    }
+  }
+}
+</style>
