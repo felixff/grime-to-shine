@@ -1,5 +1,5 @@
 <template>
-  <div class="section bg-white">
+  <div class="section bg-white van-image">
     <img src="@/assets/img/temp-van.png" alt="Van Image">
   </div>
   <div class="section bg-gray-500">
@@ -27,3 +27,10 @@ export default {
   },
 };
 </script>
+<style>
+ .van-image {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+</style>

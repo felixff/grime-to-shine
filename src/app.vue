@@ -47,7 +47,7 @@ html {
     grid-column: 1;
     display: flex;
     margin-left: 5em;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 1.5em;
 
