@@ -1,10 +1,15 @@
 <template>
   <div class="van-image">
-    <img src="@/assets/img/van1.jpg" alt="Van Image 1" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 1}">
-    <img src="@/assets/img/van2.jpg" alt="Van Image 2" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 2}">
-    <img src="@/assets/img/van3.jpg" alt="Van Image 3" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 3}">
+    <img src="@/assets/img/van1.jpg" alt="Van Image 1" class="fadeInOutAnimation"
+         :class="{transparent : imageToShow !== 1}">
+    <img src="@/assets/img/van2.jpg" alt="Van Image 2" class="fadeInOutAnimation"
+         :class="{transparent : imageToShow !== 2}">
+    <img src="@/assets/img/van3.jpg" alt="Van Image 3" class="fadeInOutAnimation"
+         :class="{transparent : imageToShow !== 3}">
     <div class="main-text">
-      We are GrimeToShine! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      We are GrimeToShine! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat.
     </div>
   </div>
   <div class="section">
@@ -13,15 +18,16 @@
   </div>
   <div class="section bg-white">
     <div class="services-header">
-      <h1 class="section-header services-header-text">Services</h1>
+      <h1 class="section-header header-text-black">Services</h1>
     </div>
     <services></services>
   </div>
-  <div id="previous-work" class="section half-screen-height">
+  <div id="previous-work" class="section">
     <h1 class="section-header">Previous Work</h1>
+    <presentation-carousel></presentation-carousel>
   </div>
-  <div id="booking-system" class="section half-screen-height">
-    <h1 class="section-header">Bookings</h1>
+  <div id="booking-system" class="section half-screen-height bg-white">
+    <h1 class="section-header header-text-black">Bookings</h1>
     <booking></booking>
   </div>
 </template>
@@ -30,23 +36,26 @@
 import Booking from '@/components/booking.vue';
 import MeetTheTeam from '@/components/meetTheTeam.vue';
 import Services from '@/components/services.vue';
+import PresentationCarousel from "@/components/presentationCarousel";
 
 export default {
   name: "homeView",
   components: {
+    PresentationCarousel,
     Booking,
     MeetTheTeam,
-    Services
+    Services,
   },
   data() {
     return {
       msg: 'THIS IS A TEST MESSAGE',
       imageToShow: 1,
       vanImages: [
-          '@/assets/img/van1.jpg',
-          '@/assets/img/van2.jpg',
-          '@/assets/img/van3.jpg'
-      ]
+        '@/assets/img/van1.jpg',
+        '@/assets/img/van2.jpg',
+        '@/assets/img/van3.jpg'
+      ],
+      presentationImages: [],
     }
   },
   mounted() {
@@ -56,10 +65,9 @@ export default {
       } else {
         this.imageToShow = 1;
       }
-    },7000)
+    }, 7000)
   },
-  computed: {
-  },
+  computed: {},
   methods: {
   }
 };
@@ -102,19 +110,8 @@ export default {
     color: $tertiary;
     z-index: 2;
     max-width: 50%;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-  }
-}
-
-.services-header {
-  background: linear-gradient( crimson , crimson) white no-repeat 0 0;
-  background-size: 0 100%;
-
-  .services-header-text {
-    color: $primary;
-    font-size: 2.5rem;
-    display: grid;
   }
 }
 </style>

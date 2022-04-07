@@ -43,7 +43,7 @@ body {
 
 footer {
   height: 10em;
-  background: $tertiary;
+  background: $primary;
   //border-radius: 100% 0 0 0;
 
   &:after {
@@ -52,7 +52,7 @@ footer {
     margin: auto;
     width: 20em;
     height: 20em;
-    background-color: $primary; /* to see where it is */
+    background-color: $tertiary; /* to see where it is */
     overflow: hidden;
     z-index: 0;
     transform: translate(-50%, -70%) rotate(45deg);
