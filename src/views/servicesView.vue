@@ -13,6 +13,8 @@ export default {
   components: {},
 };
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
+.container__services {
+  height: 100vh;
+}
 </style>

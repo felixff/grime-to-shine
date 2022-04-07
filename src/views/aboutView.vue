@@ -1,8 +1,10 @@
 <template>
-  <div class="section"></div>
-  <div class="section"></div>
-  <div class="section"></div>
-  <div class="section"></div>
+  <div class="container__about">
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+  </div>
 </template>
 
 <script>
@@ -11,3 +13,8 @@ export default {
   components: {},
 };
 </script>
+<style scoped lang="scss">
+.container__about {
+  height: 100vh;
+}
+</style>

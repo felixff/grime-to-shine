@@ -31,7 +31,7 @@ export default {
 <style scoped lang="scss">
 .container__contact {
   max-width: 70%;
-  margin: 5em auto;
+  margin: 0 auto 2em auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;

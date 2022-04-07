@@ -1,5 +1,5 @@
 <template>
-  <div class="section van-image">
+  <div class="van-image">
     <img src="@/assets/img/van1.jpg" alt="Van Image 1" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 1}">
     <img src="@/assets/img/van2.jpg" alt="Van Image 2" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 2}">
     <img src="@/assets/img/van3.jpg" alt="Van Image 3" class="fadeInOutAnimation" :class="{transparent : imageToShow !== 3}">
@@ -11,11 +11,16 @@
     <h1 class="section-header">Meet the Team</h1>
     <meet-the-team></meet-the-team>
   </div>
-  <div class="section mt-48">
-    <h1 class="section-header">Services</h1>
+  <div class="section bg-white">
+    <div class="services-header">
+      <h1 class="section-header services-header-text">Services</h1>
+    </div>
     <services></services>
   </div>
-  <div id="booking-system" class="section mt-48 half-screen-height">
+  <div id="previous-work" class="section half-screen-height">
+    <h1 class="section-header">Previous Work</h1>
+  </div>
+  <div id="booking-system" class="section half-screen-height">
     <h1 class="section-header">Bookings</h1>
     <booking></booking>
   </div>
@@ -59,9 +64,9 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .section {
-  margin-bottom: 4em;
+  padding: 2em 0;
 }
 
 .van-image {
@@ -99,6 +104,17 @@ export default {
     max-width: 50%;
     background-color: rgba(0,0,0, 0.5);
     border-radius: 10px;
+  }
+}
+
+.services-header {
+  background: linear-gradient( crimson , crimson) white no-repeat 0 0;
+  background-size: 0 100%;
+
+  .services-header-text {
+    color: $primary;
+    font-size: 2.5rem;
+    display: grid;
   }
 }
 </style>
