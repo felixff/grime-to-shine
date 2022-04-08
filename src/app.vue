@@ -59,8 +59,8 @@
     a {
       color: $secondary;
       font-family: Grafitty, sans-serif;
-      font-size: 1.5rem;
-      font-weight: bolder;
+      font-size: 1.8rem;
+      //font-weight: bolder;
 
       &:hover {
         color: $tertiary;
@@ -110,9 +110,9 @@
     }
 
     a {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: $secondary;
-      font-weight: bolder;
+      //font-weight: bolder;
 
       &:hover {
         cursor: pointer;

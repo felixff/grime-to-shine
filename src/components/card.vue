@@ -37,7 +37,7 @@ export default {
 
   .title {
     font-family: Grafitty, sans-serif;
-    font-weight: bold;
+    //font-weight: bold;
     color: $secondary;
     font-size: 1.5rem;
   }

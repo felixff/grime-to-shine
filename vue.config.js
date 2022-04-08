@@ -9,6 +9,7 @@ module.exports = defineConfig({
           @import "@/styles/_variables.scss"; 
           @import "@/styles/_main.scss"; 
           @import "@/styles/_globals.scss";
+          @import "@/styles/_animations.scss";
         `
       }
     }

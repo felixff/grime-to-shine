@@ -20,7 +20,10 @@
     "vue-datepicker": "^1.3.0",
     "vue-intersect": "^3.0.0",
     "vue-intersection-observer": "^0.1.8",
+    "vue-observe-visibility": "^1.0.0",
     "vue-router": "^4.0.3",
+    "vue-window-size": "^1.1.2",
+    "vue3-carousel": "^0.1.38",
     "vue3-datepicker": "^0.3.2",
     "vuex": "^4.0.0"
   },

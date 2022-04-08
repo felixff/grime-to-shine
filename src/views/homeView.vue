@@ -7,10 +7,12 @@
     <img src="@/assets/img/van3.jpg" alt="Van Image 3" class="fadeInOutAnimation"
          :class="{transparent : imageToShow !== 3}">
     <div class="main-text">
-      We are GrimeToShine! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat.
+      <span class="main-text__header">Mobile Valeting Service</span><br>
+      Hertfordshire | Bedfordshire | Buckinghamshire<br>
+      +44 7970 797979 | email@grimetoshine.com<br>
+      {{$windowWidth}}
     </div>
+    <i class="fas fa-chevron-down call-to-action bounce"></i>
   </div>
   <div class="section">
     <h1 class="section-header">Meet the Team</h1>
@@ -106,12 +108,30 @@ export default {
   }
 
   .main-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: $tertiary;
     z-index: 2;
     max-width: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+    //background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+
+    .main-text__header {
+      font-family: Grafitty, sans-serif;
+      font-size: 3rem;
+    }
+  }
+
+  .call-to-action {
+    position: absolute;
+    bottom: 0;
+    margin-inline: auto;
+    height: 2.7em;
+    color: $tertiary;
+    filter: drop-shadow(0 0 1px $tertiary);
+    font-weight: bolder;
+    animation: bounce 2s infinite;
+    transform-origin: bottom;
+    z-index: 2;
   }
 }
 </style>

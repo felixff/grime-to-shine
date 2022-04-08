@@ -44,7 +44,7 @@ export default {
     .team-member-name {
       font-size: 2rem;
       font-family: Grafitty, sans-serif;
-      font-weight: bold;
+      //font-weight: bold;
     }
 
     .description {

@@ -109,7 +109,7 @@ a {
   html:focus-within {
    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -129,7 +129,13 @@ a {
 }
 @font-face {
   font-family: 'Grafitty';
-  src: url('@/styles/fonts/grafitty/grafitty.woff') format('woff'), url('@/styles/fonts/grafitty/grafitty.ttf') format('ttf');
+  src: url('@/styles/fonts/grafitty/Grafitty.woff') format('woff'), url('@/styles/fonts/grafitty/grafitty.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Grafitty-Outline';
+  src: url('@/styles/fonts/grafitty/Grafitty outline.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

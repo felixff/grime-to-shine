@@ -11,5 +11,6 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
+import { VueWindowSizePlugin } from 'vue-window-size/option-api';
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(store).use(router).use(VueWindowSizePlugin).mount('#app')

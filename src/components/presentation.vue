@@ -22,16 +22,19 @@ export default {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(3, 1fr);
   position: relative;
-  width: 18em;
-  height: 15em;
-  filter: drop-shadow(0 0 15px rgba(100, 100, 100, 0.4));
+  width: 27em;
+  height: 20em;
 
   img {
     width: 100%;
     height: 100%;
+    min-width: 14em;
+    min-height: 14em;
     object-fit: cover;
     overflow: hidden;
     transition: all .6s cubic-bezier(0.5, 0, 0.3, 1);
+    border-radius: 4px;
+
     &:hover {
       grid-column: 1 / span 12;
       grid-row: 1 / span 3;
