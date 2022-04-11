@@ -33,6 +33,10 @@ ol[role='list'] {
 html:focus-within {
   scroll-behavior: smooth;
 }
+html {
+  min-width: 33em;
+  scroll-behavior: smooth;
+}
 
 /* Set core body defaults */
 body {

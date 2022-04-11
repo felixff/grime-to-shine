@@ -35,18 +35,6 @@ export default {
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
           image: null
         },
-        {
-          type: "platinum",
-          title: "Platinum",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: null
-        },
-        {
-          type: "diamond",
-          title: "Diamond",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: null
-        },
       ]
     }
   }
@@ -57,10 +45,23 @@ export default {
 
 .container__services {
   padding: 2px 16px;
+  /**
+   * User input values.
+   */
+  --grid-layout-gap: 1em;
+  --grid-column-count: 3;
+  --grid-item--min-width: 32em;
+
+  /**
+   * Calculated values.
+   */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
   display: grid;
-  //grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); /* see notes below */
-  gap: calc(2% - 1em);
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  grid-gap: var(--grid-layout-gap);
   margin: 5em auto;
 }
 </style>

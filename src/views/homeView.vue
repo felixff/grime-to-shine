@@ -1,20 +1,35 @@
 <template>
-  <div class="van-image">
-    <img src="@/assets/img/van1.jpg" alt="Van Image 1" class="fadeInOutAnimation"
-         :class="{transparent : imageToShow !== 1}">
-    <img src="@/assets/img/van2.jpg" alt="Van Image 2" class="fadeInOutAnimation"
-         :class="{transparent : imageToShow !== 2}">
-    <img src="@/assets/img/van3.jpg" alt="Van Image 3" class="fadeInOutAnimation"
-         :class="{transparent : imageToShow !== 3}">
+<div class="container__home" @scroll="handleChevron">
+<div class="van-image">
+    <img
+      src="@/assets/img/van1.jpg"
+      alt="Van Image 1"
+      class="fadeInOutAnimation"
+      :class="{ transparent: imageToShow !== 1 }"
+    />
+    <img
+      src="@/assets/img/van2.jpg"
+      alt="Van Image 2"
+      class="fadeInOutAnimation"
+      :class="{ transparent: imageToShow !== 2 }"
+    />
+    <img
+      src="@/assets/img/van3.jpg"
+      alt="Van Image 3"
+      class="fadeInOutAnimation"
+      :class="{ transparent: imageToShow !== 3 }"
+    />
     <div class="main-text">
-      <span class="main-text__header">Mobile Valeting Service</span><br>
-      Hertfordshire | Bedfordshire | Buckinghamshire<br>
-      +44 7970 797979 | email@grimetoshine.com<br>
-      {{$windowWidth}}
+      <span class="main-text__header">Mobile Valeting Service</span><br />
+      Hertfordshire | Bedfordshire | Buckinghamshire<br />
+      +44 7970 797979 | email@grimetoshine.com<br />
+      {{ $windowWidth }}
     </div>
-    <i class="fas fa-chevron-down call-to-action bounce"></i>
+    <a class="call-to-action" :class="{ hidden: showChevron === false }" href="#meet-the-team">
+      <i class="fas fa-chevron-down bounce"></i>
+    </a>
   </div>
-  <div class="section">
+  <div id="meet-the-team" class="section">
     <h1 class="section-header">Meet the Team</h1>
     <meet-the-team></meet-the-team>
   </div>
@@ -32,12 +47,14 @@
     <h1 class="section-header header-text-black">Bookings</h1>
     <booking></booking>
   </div>
+</div>
+  
 </template>
 
 <script>
-import Booking from '@/components/booking.vue';
-import MeetTheTeam from '@/components/meetTheTeam.vue';
-import Services from '@/components/services.vue';
+import Booking from "@/components/booking.vue";
+import MeetTheTeam from "@/components/meetTheTeam.vue";
+import Services from "@/components/services.vue";
 import PresentationCarousel from "@/components/presentationCarousel";
 
 export default {
@@ -50,15 +67,18 @@ export default {
   },
   data() {
     return {
-      msg: 'THIS IS A TEST MESSAGE',
+      msg: "THIS IS A TEST MESSAGE",
       imageToShow: 1,
+      lastKnownScrollPosition: 0,
+      ticking: false,
+      showChevron: true,
       vanImages: [
-        '@/assets/img/van1.jpg',
-        '@/assets/img/van2.jpg',
-        '@/assets/img/van3.jpg'
+        "@/assets/img/van1.jpg",
+        "@/assets/img/van2.jpg",
+        "@/assets/img/van3.jpg",
       ],
       presentationImages: [],
-    }
+    };
   },
   mounted() {
     setInterval(() => {
@@ -67,14 +87,37 @@ export default {
       } else {
         this.imageToShow = 1;
       }
-    }, 7000)
+    }, 7000);
+    this.$nextTick(() => {
+      window.addEventListener("scroll", this.scrollCallback);
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.scrollCallback);
   },
   computed: {},
   methods: {
-  }
+    scrollCallback() {
+      this.lastKnownScrollPosition = window.scrollY;
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.handleChevron();
+          this.ticking = false;
+        });
+
+        this.ticking = true;
+      }
+    },
+    handleChevron() {
+      this.showChevron = this.lastKnownScrollPosition >= 1 ? false : true;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
+.container__home {
+  scroll-behavior: smooth !important;
+}
 .section {
   padding: 2em 0;
 }
@@ -94,6 +137,7 @@ export default {
     -moz-transition: opacity 1s ease-in-out;
     -o-transition: opacity 1s ease-in-out;
     transition: opacity 1s ease-in-out;
+    object-fit: cover;
   }
 
   &:before {
@@ -125,13 +169,20 @@ export default {
     position: absolute;
     bottom: 0;
     margin-inline: auto;
-    height: 2.7em;
-    color: $tertiary;
-    filter: drop-shadow(0 0 1px $tertiary);
-    font-weight: bolder;
     animation: bounce 2s infinite;
     transform-origin: bottom;
     z-index: 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .bounce {
+    color: $tertiary;
+    filter: drop-shadow(0 0 1px $tertiary);
+    font-weight: bolder;
+    height: 2.7em;
   }
 }
 </style>

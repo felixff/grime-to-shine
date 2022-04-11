@@ -22,7 +22,7 @@ export default {
   name: "meetTheTeam",
   props: {
     "contacts" : {
-      default: [ 'Felix' , 'Ben']
+      default: [ 'Manager' , 'Colleague']
     }
   },
 };
@@ -30,15 +30,22 @@ export default {
 
 <style scoped lang="scss">
 .container__contact {
-  max-width: 70%;
-  margin: 0 auto 2em auto;
+  --grid-layout-gap: 2em;
+  --grid-column-count: 2;
+  --grid-item--min-width: 32em;
+  --grid-item--max-width: calc((100% - var(--grid-layout-gap)) / var(--grid-column-count));
+
+  margin-block-end: 2em;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  grid-gap: var(--grid-layout-gap);
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
 
   .team-member{
-    width: 90%;
+    width: 100%;
     color: $tertiary-calmer;
 
     .team-member-name {

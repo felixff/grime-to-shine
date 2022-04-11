@@ -12,3 +12,11 @@
   70%  { transform: translateY(-5px); }
   100% { transform: translateY(0); }
 }
+
+@-webkit-keyframes slide {
+  100% { left: 0; }
+}
+
+@keyframes slide {
+  100% { left: 0; }
+}
