@@ -22,23 +22,32 @@
 }
 
 .section-header {
-  font-size: 2.5rem;
-  font-family: Grafitty, sans-serif;
+  font-size: 2rem;
+  font-family: Montserrat, sans-serif;
   color: $secondary;
-  //font-weight: bolder;
+  font-weight: bolder;
   margin-bottom: 3em;
 }
 
 .section-header__small {
-  font-size: 1.8rem;
-  font-family: Grafitty, sans-serif;
+  font-size: 1.5rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: bolder;
   color: $secondary;
+  margin-bottom: 1.5em;
+}
+.section-header-black__small {
+  font-size: 1.5rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: bolder;
+  color: $primary;
   margin-bottom: 1.5em;
 }
 
 .header-text-black {
   color: $primary;
-  font-size: 2.5rem;
+  font-weight: bolder;
+  font-size: 2rem;
   display: grid;
 }
 

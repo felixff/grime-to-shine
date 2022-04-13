@@ -2,29 +2,35 @@
 <div class="container__home" @scroll="handleChevron">
 <div class="van-image">
     <img
-      src="@/assets/img/van1.jpg"
+      src="@/assets/img/slides/van-left.jpg"
       alt="Van Image 1"
       class="fadeInOutAnimation"
       :class="{ transparent: imageToShow !== 1 }"
     />
     <img
-      src="@/assets/img/van2.jpg"
+      src="@/assets/img/slides/van-right.jpg"
       alt="Van Image 2"
       class="fadeInOutAnimation"
       :class="{ transparent: imageToShow !== 2 }"
     />
     <img
-      src="@/assets/img/van3.jpg"
+      src="@/assets/img/slides/suv.jpg"
       alt="Van Image 3"
       class="fadeInOutAnimation"
       :class="{ transparent: imageToShow !== 3 }"
+    />
+    <img
+      src="@/assets/img/slides/merc.png"
+      alt="Van Image 3"
+      class="fadeInOutAnimation"
+      :class="{ transparent: imageToShow !== 4 }"
     />
     <div class="main-text">
       <span class="main-text__header">Mobile Valeting Service</span><br />
       Hertfordshire | Bedfordshire | Buckinghamshire<br />
       +44 7970 797979 | email@grimetoshine.com<br />
     </div>
-    <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 }" href="#meet-the-team">
+    <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 || $windowWidth < 1064}" href="#meet-the-team">
       <i class="fas fa-chevron-down bounce"></i>
     </a>
   </div>
@@ -38,6 +44,7 @@
   </div>
   <div class="section bg-white">
     <h1 class="section-header header-text-black">Why Us?</h1>
+    <why-us></why-us>
   </div>
   <div id="booking-system" class="section half-screen-height">
     <h1 class="section-header">Bookings</h1>
@@ -51,6 +58,7 @@
 import Booking from "@/components/booking.vue";
 import MeetTheTeam from "@/components/aboutUs.vue";
 import PresentationCarousel from "@/components/presentationCarousel";
+import WhyUs from "@/components/whyUs";
 
 export default {
   name: "homeView",
@@ -58,6 +66,7 @@ export default {
     PresentationCarousel,
     Booking,
     MeetTheTeam,
+    WhyUs
   },
   data() {
     return {
@@ -75,7 +84,7 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      if (this.imageToShow < 3) {
+      if (this.imageToShow < 4) {
         this.imageToShow += 1;
       } else {
         this.imageToShow = 1;

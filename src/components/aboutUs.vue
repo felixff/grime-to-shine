@@ -45,7 +45,7 @@ export default {
     }
 
     .description {
-      color: $primary-text;
+      color: $primary-brighter;
     }
   }
 }

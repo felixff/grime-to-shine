@@ -1,5 +1,5 @@
 <template>
-  <div class="container__services">
+  <div class="container__servicesView">
     <services></services>
   </div>
 </template>
@@ -15,7 +15,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container__services {
-  height: 100vh;
+.container__servicesView {
+  background-color: $tertiary-calmer;
+  //height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container__servicesView {
+    //margin: 10em auto;
+  }
 }
 </style>

@@ -1,10 +1,16 @@
 <template>
   <div class="container__presentation">
-    <img :src="topImage" alt="Top Gallery Image" class="image-stack__item--top" @mouseover="hoveringTop = true"
-         @mouseleave="hoveringTop = false" @click="hoveringTop = !hoveringTop" :class="{'zoomed-in' : hoveringTop}">
-    <img :src="bottomImage" alt="Bottom Gallery Image" class="image-stack__item--bottom"
-         @mouseenter="hoveringBottom = true" @mouseleave="hoveringBottom = false"
-         @click="hoveringBottom = !hoveringBottom" :class="{'zoomed-in' : hoveringBottom}">
+    <div class="image-stack__item--top" :class="{'zoomed-in' : hoveringTop}">
+      <label for="before" :class="{hidden : hoveringTop}">Before</label>
+      <img id="before" :src="topImage" alt="Top Gallery Image" @mouseover="hoveringTop = true"
+           @mouseleave="hoveringTop = false" @click="hoveringTop = !hoveringTop">
+    </div>
+    <div class="image-stack__item--bottom" :class="{'zoomed-in' : hoveringBottom}">
+      <img id="after" :src="bottomImage" alt="Bottom Gallery Image"
+           @mouseenter="hoveringBottom = true" @mouseleave="hoveringBottom = false"
+           @click="hoveringBottom = !hoveringBottom">
+      <label for="after" :class="{hidden : hoveringBottom}">After</label>
+    </div>
   </div>
 </template>
 
@@ -31,6 +37,10 @@ export default {
   width: 27em;
   height: 20em;
 
+  label {
+    color: $tertiary;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -40,6 +50,7 @@ export default {
     overflow: hidden;
     transition: all .6s cubic-bezier(0.5, 0, 0.3, 1);
     border-radius: 4px;
+
   }
 
   .zoomed-in {
@@ -50,14 +61,36 @@ export default {
   }
 
   .image-stack__item--top {
+    position: relative;
     grid-column: 1 / span 6;
     grid-row: 1 / span 2; // must be on the same row as the other image
+
+    label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-family: Grafitty, sans-serif;
+      font-size: 2rem;
+      color: $secondary;
+      transform: translateY(100%);
+    }
   }
 
   .image-stack__item--bottom {
+    position: relative;
     grid-column: 5 / span 6;
     grid-row: 2 / span 2; // make this image be on the same row
     z-index: 1; // make this image render on top of the bottom
+
+    label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: Grafitty, sans-serif;
+      font-size: 2rem;
+      color: $tertiary;
+      transform: translateY(-90%);
+    }
   }
 
   @keyframes scaleUp {

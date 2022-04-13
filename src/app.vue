@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="wrapper">
     <div class="navbar">
       <div
         v-if="alwaysVisible === false"
@@ -110,7 +110,7 @@ export default {
 <style lang="scss">
 #app {
   background-color: $primary;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -119,23 +119,27 @@ export default {
   scroll-behavior: smooth;
 }
 
+#wrapper {
+  max-width: 100vw !important;
+}
+
 .navbar {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 0.3fr 1fr;
-  grid-template-rows: 8em;
+  grid-template-columns: 0.4fr 0.8fr 1fr;
+  grid-template-rows: 6em;
   background-color: rgba(0, 0, 0, 1);
   z-index: 10;
 
   .burger-menu {
     color: $secondary;
-    font-size: 3rem;
+    font-size: 2rem;
     z-index: 11;
     position: fixed;
     left: 0;
     top: 0;
-    transform: translate(20%, 10%);
+    transform: translate(50%, 10%);
 
     &:hover {
       cursor: pointer;
@@ -147,7 +151,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 1);
     position: fixed;
     top: 0;
@@ -224,6 +228,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transform: translateY(5%);
 
     .socials {
       display: flex;
@@ -241,13 +246,35 @@ export default {
     }
 
     a {
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       color: $secondary;
       //font-weight: bolder;
 
       &:hover {
         cursor: pointer;
         color: $tertiary;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1064px) {
+  .navbar {
+    grid-template-columns: 1fr 0.3fr 1fr;
+    grid-template-rows: 8em;
+
+    .book-socials {
+      transform: translateY(0);
+
+      a {
+        font-size: 2.2rem;
+        color: $secondary;
+        //font-weight: bolder;
+
+        &:hover {
+          cursor: pointer;
+          color: $tertiary;
+        }
       }
     }
   }

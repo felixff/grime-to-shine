@@ -53,7 +53,7 @@ export default {
   flex-direction: column;
   padding: 5px;
   border-radius: 2.5%;
-  background-color: $primary-text;
+  background-color: $primary-brighter;
 
   .image {
     display: none;

@@ -32,6 +32,7 @@ export default {
   // eslint-disable-next-line
   name: "services",
   components: {
+    // eslint-disable-next-line
     Card
   },
   data() {
@@ -111,6 +112,7 @@ export default {
 
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   .cards {
     padding: 2px 16px;
@@ -120,13 +122,10 @@ export default {
   }
 
   .extras {
-    //width: calc(100% - (var(--total-gap-width) * var(--gap-count)));
-    background-color: $primary-text;
+    background-color: $primary-brighter;
     margin-inline: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    width: 85vw;
-    min-width: var(--grid-item--min-width);
 
     .extra-services {
       display: flex;
