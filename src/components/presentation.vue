@@ -1,7 +1,10 @@
 <template>
   <div class="container__presentation">
-    <img :src="topImage" alt="Top Gallery Image" class="image-stack__item--top">
-    <img :src="bottomImage" alt="Bottom Gallery Image" class="image-stack__item--bottom">
+    <img :src="topImage" alt="Top Gallery Image" class="image-stack__item--top" @mouseover="hoveringTop = true"
+         @mouseleave="hoveringTop = false" @click="hoveringTop = !hoveringTop" :class="{'zoomed-in' : hoveringTop}">
+    <img :src="bottomImage" alt="Bottom Gallery Image" class="image-stack__item--bottom"
+         @mouseenter="hoveringBottom = true" @mouseleave="hoveringBottom = false"
+         @click="hoveringBottom = !hoveringBottom" :class="{'zoomed-in' : hoveringBottom}">
   </div>
 </template>
 
@@ -11,7 +14,10 @@ export default {
   name: "presentation",
   props: ['topImage', 'bottomImage'],
   data() {
-    return {}
+    return {
+      hoveringTop: false,
+      hoveringBottom: false
+    }
   }
 }
 </script>
@@ -34,13 +40,13 @@ export default {
     overflow: hidden;
     transition: all .6s cubic-bezier(0.5, 0, 0.3, 1);
     border-radius: 4px;
+  }
 
-    &:hover {
-      grid-column: 1 / span 12;
-      grid-row: 1 / span 3;
-      z-index: 3;
-      cursor: zoom-in;
-    }
+  .zoomed-in {
+    grid-column: 1 / span 12 !important;
+    grid-row: 1 / span 3 !important;
+    z-index: 3 !important;
+    cursor: zoom-in;
   }
 
   .image-stack__item--top {

@@ -50,17 +50,17 @@ footer {
   background: $primary;
   //border-radius: 100% 0 0 0;
 
-  &:after {
-    content: "";
-    position:absolute;
-    margin: auto;
-    width: 20em;
-    height: 20em;
-    background-color: $tertiary; /* to see where it is */
-    overflow: hidden;
-    z-index: 0;
-    transform: translate(-50%, -70%) rotate(45deg);
-  }
+  //&:after {
+  //  content: "";
+  //  position:absolute;
+  //  margin: auto;
+  //  width: 20em;
+  //  height: 20em;
+  //  background-color: $tertiary; /* to see where it is */
+  //  overflow: hidden;
+  //  z-index: 0;
+  //  transform: translate(-50%, -70%) rotate(45deg);
+  //}
 }
 
 /* A elements that don't have a class get default styles */

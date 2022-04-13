@@ -1,16 +1,17 @@
 <template>
   <div class="container__services">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
+    <services></services>
   </div>
 </template>
 
 <script>
+import Services from "@/components/services.vue";
+
 export default {
   name: "servicesView",
-  components: {},
+  components: {
+    Services,
+  },
 };
 </script>
 <style lang="scss" scoped>

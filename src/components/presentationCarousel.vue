@@ -53,10 +53,8 @@ export default {
 .presentation-carousel {
   display: flex;
   flex-direction: column;
-  /*justify-content: space-evenly;*/
   gap: 2em;
   margin: 5em auto;
-  /*overflow: hidden;*/
   width: 80%;
 
   .carousel__prev, .carousel__next {

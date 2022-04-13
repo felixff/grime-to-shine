@@ -23,28 +23,24 @@
       <span class="main-text__header">Mobile Valeting Service</span><br />
       Hertfordshire | Bedfordshire | Buckinghamshire<br />
       +44 7970 797979 | email@grimetoshine.com<br />
-      {{ $windowWidth }}
     </div>
-    <a class="call-to-action" :class="{ hidden: showChevron === false }" href="#meet-the-team">
+    <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 }" href="#meet-the-team">
       <i class="fas fa-chevron-down bounce"></i>
     </a>
   </div>
-  <div id="meet-the-team" class="section">
-    <h1 class="section-header">Meet the Team</h1>
+  <div id="meet-the-team" class="section bg-white">
+    <h1 class="section-header header-text-black">About Us</h1>
     <meet-the-team></meet-the-team>
-  </div>
-  <div class="section bg-white">
-    <div class="services-header">
-      <h1 class="section-header header-text-black">Services</h1>
-    </div>
-    <services></services>
   </div>
   <div id="previous-work" class="section">
     <h1 class="section-header">Previous Work</h1>
     <presentation-carousel></presentation-carousel>
   </div>
-  <div id="booking-system" class="section half-screen-height bg-white">
-    <h1 class="section-header header-text-black">Bookings</h1>
+  <div class="section bg-white">
+    <h1 class="section-header header-text-black">Why Us?</h1>
+  </div>
+  <div id="booking-system" class="section half-screen-height">
+    <h1 class="section-header">Bookings</h1>
     <booking></booking>
   </div>
 </div>
@@ -53,8 +49,7 @@
 
 <script>
 import Booking from "@/components/booking.vue";
-import MeetTheTeam from "@/components/meetTheTeam.vue";
-import Services from "@/components/services.vue";
+import MeetTheTeam from "@/components/aboutUs.vue";
 import PresentationCarousel from "@/components/presentationCarousel";
 
 export default {
@@ -63,13 +58,11 @@ export default {
     PresentationCarousel,
     Booking,
     MeetTheTeam,
-    Services,
   },
   data() {
     return {
       msg: "THIS IS A TEST MESSAGE",
       imageToShow: 1,
-      lastKnownScrollPosition: 0,
       ticking: false,
       showChevron: true,
       vanImages: [
@@ -88,28 +81,15 @@ export default {
         this.imageToShow = 1;
       }
     }, 7000);
-    this.$nextTick(() => {
-      window.addEventListener("scroll", this.scrollCallback);
-    });
   },
-  beforeUnmount() {
-    window.removeEventListener("scroll", this.scrollCallback);
+  computed: {
+    currentScrollPosition() {
+      return this.$store.state.scrollPosition;
+    }
   },
-  computed: {},
   methods: {
-    scrollCallback() {
-      this.lastKnownScrollPosition = window.scrollY;
-      if (!this.ticking) {
-        window.requestAnimationFrame(() => {
-          this.handleChevron();
-          this.ticking = false;
-        });
-
-        this.ticking = true;
-      }
-    },
-    handleChevron() {
-      this.showChevron = this.lastKnownScrollPosition >= 1 ? false : true;
+    handleChevron(lastKnownScrollPosition) {
+      this.showChevron = lastKnownScrollPosition < 1;
     },
   },
 };
@@ -117,9 +97,11 @@ export default {
 <style lang="scss" scoped>
 .container__home {
   scroll-behavior: smooth !important;
+  max-width: 100vw;
 }
 .section {
   padding: 2em 0;
+  max-width: 100vw;
 }
 
 .van-image {
@@ -129,8 +111,10 @@ export default {
   align-items: center;
   overflow: hidden;
   position: relative;
+  border-bottom: 1px solid $tertiary-calmer;
 
   img {
+    display: none;
     width: 100%;
     position: absolute;
     -webkit-transition: opacity 1s ease-in-out;
@@ -155,10 +139,8 @@ export default {
     font-size: 1.5rem;
     color: $tertiary;
     z-index: 2;
-    max-width: 50%;
-    //background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-
+    width: 96%;
     .main-text__header {
       font-family: Grafitty, sans-serif;
       font-size: 3rem;
@@ -183,6 +165,24 @@ export default {
     filter: drop-shadow(0 0 1px $tertiary);
     font-weight: bolder;
     height: 2.7em;
+  }
+}
+
+@media screen and (min-width: 1064px) {
+  .main-text {
+    max-width: 50%;
+  }
+
+  .van-image {
+    border-bottom: none;
+
+    img {
+      display: block;
+    }
+  }
+
+  .call-to-action {
+    display: block;
   }
 }
 </style>

@@ -1,7 +1,27 @@
 <template>
   <div class="container__services">
-    <card v-for="service in services" :key="service.type" :title="service.title" :content="service.text"
-          :image="service.image"></card>
+    <div class="cards">
+      <card v-for="service in services"
+            :key="service.type"
+            :title="service.title"
+            :content="service.text"
+            :type="service.type"
+            :image="service.image"
+            :item-list="service.itemList">
+      </card>
+    </div>
+    <div class="extras">
+      <h1 class="section-header__small">Extras</h1>
+      <ul class="extra-services">
+        <li class="service">Leather Care - from £30</li>
+        <li class="service">Glass polished (Interior & Exterior) - from £10</li>
+        <li class="service">Pet hair removal - from £20</li>
+        <li class="service">Engine Bay Clean* - from £25</li>
+        <li class="service">Body work hand polished - from £35</li>
+      </ul>
+      <small>*Engine bays are cleaned at the owners risk and as such we take no responsibility for any damage
+        caused</small>
+    </div>
   </div>
 </template>
 
@@ -20,19 +40,57 @@ export default {
         {
           type: "bronze",
           title: "Bronze",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          itemList: [
+            'Rubbish removal',
+            'Floor mats cleaned',
+            'Snow foam pre wash',
+            'Pressure wash, Shampoo & condition Exterior',
+            'Wheels cleaned and tyres dressed',
+            'Towel dried',
+            'Dashboard & compartments vacuumed',
+            'Dashboard & compartments chamoised',
+            'Glass Polished (Exterior only)'
+          ],
           image: null
         },
         {
           type: "silver",
           title: "Silver",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          itemList: [
+            'Rubbish removal',
+            'Floor mats cleaned',
+            'Snow foam pre wash',
+            'Pressure wash, Shampoo & condition Exterior',
+            'Wheels cleaned and tyres dressed',
+            'Towel dried',
+            'Dashboard & compartments vacuumed',
+            'Dashboard & compartments chamoised',
+            'Glass Polished (Exterior only)',
+            'Glass Polished (Interior & Exterior)',
+            'Carpets & Upholstery shampooed'
+          ],
           image: null
         },
         {
           type: "gold",
           title: "Gold",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          itemList: [
+            'Rubbish removal',
+            'Floor mats cleaned',
+            'Snow foam pre wash',
+            'Pressure wash, Shampoo & condition Exterior',
+            'Wheels cleaned and tyres dressed',
+            'Towel dried',
+            'Dashboard & compartments vacuumed',
+            'Dashboard & compartments chamoised',
+            'Glass Polished (Exterior only)',
+            'Glass Polished (Interior & Exterior)',
+            'Carpets & Upholstery shampooed',
+            'Extensive vacuum',
+            'Door, Boot & Bonnet shuts cleaned',
+            'Exterior rubber & plastics treated',
+            'Odour fogger'
+          ],
           image: null
         },
       ]
@@ -44,24 +102,53 @@ export default {
 <style lang="scss" scoped>
 
 .container__services {
-  padding: 2px 16px;
-  /**
-   * User input values.
-   */
-  --grid-layout-gap: 1em;
+  --grid-layout-gap: 0.2em;
   --grid-column-count: 3;
-  --grid-item--min-width: 32em;
-
-  /**
-   * Calculated values.
-   */
+  --grid-item--min-width: 22em;
   --gap-count: calc(var(--grid-column-count) - 1);
   --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
   --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
-  grid-gap: var(--grid-layout-gap);
-  margin: 5em auto;
+  display: flex;
+  flex-direction: column;
+
+  .cards {
+    padding: 2px 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+    grid-gap: var(--grid-layout-gap);
+  }
+
+  .extras {
+    //width: calc(100% - (var(--total-gap-width) * var(--gap-count)));
+    background-color: $primary-text;
+    margin-inline: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 85vw;
+    min-width: var(--grid-item--min-width);
+
+    .extra-services {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin: 2em auto;
+
+      .service {
+        color: $tertiary-calmer;
+      }
+    }
+
+    small {
+      color: $tertiary-calmer;
+      margin: 2em auto;
+    }
+  }
+}
+
+@media screen and (min-width: 1064px){
+  .container__services {
+    --grid-item--min-width: 28em;
+  }
 }
 </style>

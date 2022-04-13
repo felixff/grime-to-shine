@@ -29,6 +29,13 @@
   margin-bottom: 3em;
 }
 
+.section-header__small {
+  font-size: 1.8rem;
+  font-family: Grafitty, sans-serif;
+  color: $secondary;
+  margin-bottom: 1.5em;
+}
+
 .header-text-black {
   color: $primary;
   font-size: 2.5rem;
@@ -36,5 +43,10 @@
 }
 
 .bg-white {
-  background-color: $tertiary-calmer !important;
+  background-color: $tertiary !important;
+}
+
+.fixed {
+  position: sticky !important;
+  top: 0;
 }

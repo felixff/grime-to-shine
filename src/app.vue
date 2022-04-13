@@ -50,16 +50,20 @@ export default {
     this.windowWidthInternal = window.innerWidth;
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
+      window.addEventListener("scroll", this.onScroll);
     });
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
   },
   data() {
     return {
       navbarHidden: false,
       closed: true,
+      scrolled: false,
       windowWidthInternal: 0,
+      lastKnownScrollPosition: 0,
     };
   },
   computed: {
@@ -82,9 +86,24 @@ export default {
         this.closed = true;
       }
     },
+    onScroll() {
+      this.lastKnownScrollPosition = window.scrollY;
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.$store.commit('saveScrollPosition', this.lastKnownScrollPosition);
+          this.stickMenu();
+          this.ticking = false;
+        });
+
+        this.ticking = true;
+      }
+    },
     closeMenu() {
       this.closed = !this.closed;
     },
+    stickMenu() {
+      this.scrolled = this.lastKnownScrollPosition < 1;
+    }
   },
 };
 </script>

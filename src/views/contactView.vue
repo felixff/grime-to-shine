@@ -98,7 +98,7 @@ export default {
       gap: 1em;
       box-shadow: 0 4px 8px 0 rgba(245, 245, 245, 0.2);
       border-radius: 5px;
-      color: $primary;
+      color: $primary-text;
       flex-wrap: wrap;
 
       button {
@@ -107,7 +107,7 @@ export default {
 
         &:hover {
           background-color: $tertiary;
-          color: $primary;
+          color: $primary-text;
         }
       }
 
