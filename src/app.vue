@@ -1,48 +1,46 @@
 <template>
-  <div id="wrapper">
-    <div class="navbar">
-      <div
+  <div class="navbar">
+    <div
         v-if="alwaysVisible === false"
         class="burger-menu"
         @click="hideNavbar()"
-      >
-        <i class="fas fa-bars"></i>
-      </div>
-      <nav
+    >
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav
         :class="{
           'navbar-not-visible': hideAway && alwaysVisible === false,
           'full-screen-navbar': windowWidthInternal < 1000,
           'navbar-visible': navbarHidden === false,
         }"
-      >
-        <div v-if="closed === false" class="close-button" @click="closeMenu">
-          <i class="fas fa-times close"></i>
-        </div>
-        <router-link to="/">Home</router-link>
-        <router-link to="/services">Services</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/contact">Contact</router-link>
-      </nav>
-      <div class="logo">
-        <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo" />
+    >
+      <div v-if="closed === false" class="close-button" @click="closeMenu">
+        <i class="fas fa-times close"></i>
       </div>
-      <div class="book-socials">
-        <div class="socials">
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-instagram"></i>
-        </div>
-        <div class="book">
-          <a href="#booking-system">Book Now</a>
-        </div>
+      <router-link to="/" @click="closeMenu">Home</router-link>
+      <router-link to="/services" @click="closeMenu">Services</router-link>
+      <router-link to="/about" @click="closeMenu">About</router-link>
+      <router-link to="/contact" @click="closeMenu">Contact</router-link>
+    </nav>
+    <div class="logo">
+      <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
+    </div>
+    <div class="book-socials">
+      <div class="socials">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="book">
+        <a href="#booking-system">Book Now</a>
       </div>
     </div>
-    <router-view />
-    <footer>
-      <small style="position: absolute; left: 0"
-        >Copyright &copy; 2022, GrimeToShine</small
-      >
-    </footer>
   </div>
+  <router-view/>
+  <footer>
+    <small style="position: absolute; left: 0"
+    >Copyright &copy; 2022, GrimeToShine</small
+    >
+  </footer>
 </template>
 <script>
 export default {
@@ -119,13 +117,9 @@ export default {
   scroll-behavior: smooth;
 }
 
-#wrapper {
-  max-width: 100vw !important;
-}
-
 .navbar {
   position: fixed;
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: 0.4fr 0.8fr 1fr;
   grid-template-rows: 6em;
@@ -162,6 +156,7 @@ export default {
   .navbar-visible {
     transform: translateX(0) !important;
   }
+
   .navbar-not-visible {
     transform: translateX(-100%) !important;
   }
@@ -172,6 +167,7 @@ export default {
     margin: 2em;
     top: 1em;
     right: 1em;
+
     &:hover {
       cursor: pointer;
     }

@@ -104,7 +104,6 @@ export default {
       button {
         background-color: $secondary;
 
-
         &:hover {
           background-color: $tertiary;
           color: $primary-brighter;

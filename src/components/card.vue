@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <!--    <img :src="image" class="image" :alt="image">-->
+    <img v-if="image !== null" :src="image" class="image" :alt="image">
     <div class="section-header__small" :class="type !== null ? type : ''">{{ title }}</div>
     <div v-if="content !== null" class="content">{{ content }}</div>
     <ul v-if="itemList !== undefined && itemList.length > 0" class="item-list">
-      <li v-for="(item, index) in itemList" :key="index" class="listItem">{{ index + 1 }}. {{ item }}</li>
+      <li v-for="(item, index) in itemList" :key="index" class="listItem"><i class="fas fa-soap"/> {{ item }}</li>
     </ul>
   </div>
 </template>
@@ -70,6 +70,19 @@ export default {
     color: $tertiary-calmer;
     font-size: 1rem;
     padding: 5px;
+
+    .listItem {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
+      gap: 0.2em;
+
+      .fa-soap {
+        font-size: 10px;
+        transform: translateY(-2px);
+      }
+    }
   }
 
   .bronze {

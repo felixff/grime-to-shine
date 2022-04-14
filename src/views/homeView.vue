@@ -1,60 +1,61 @@
 <template>
-<div class="container__home" @scroll="handleChevron">
-<div class="van-image">
-    <img
-      src="@/assets/img/slides/van-left.jpg"
-      alt="Van Image 1"
-      class="fadeInOutAnimation"
-      :class="{ transparent: imageToShow !== 1 }"
-    />
-    <img
-      src="@/assets/img/slides/van-right.jpg"
-      alt="Van Image 2"
-      class="fadeInOutAnimation"
-      :class="{ transparent: imageToShow !== 2 }"
-    />
-    <img
-      src="@/assets/img/slides/suv.jpg"
-      alt="Van Image 3"
-      class="fadeInOutAnimation"
-      :class="{ transparent: imageToShow !== 3 }"
-    />
-    <img
-      src="@/assets/img/slides/merc.png"
-      alt="Van Image 3"
-      class="fadeInOutAnimation"
-      :class="{ transparent: imageToShow !== 4 }"
-    />
-    <div class="main-text">
-      <span class="main-text__header">Mobile Valeting Service</span><br />
-      Hertfordshire | Bedfordshire | Buckinghamshire<br />
-      +44 7970 797979 | email@grimetoshine.com<br />
+  <div class="container__home">
+    <div class="van-image">
+      <img
+          src="@/assets/img/slides/van-left.jpg"
+          alt="Van Image 1"
+          class="fadeInOutAnimation"
+          :class="{ transparent: imageToShow !== 1 }"
+      />
+      <img
+          src="@/assets/img/slides/van-right.jpg"
+          alt="Van Image 2"
+          class="fadeInOutAnimation"
+          :class="{ transparent: imageToShow !== 2 }"
+      />
+      <img
+          src="@/assets/img/slides/suv.jpg"
+          alt="Van Image 3"
+          class="fadeInOutAnimation"
+          :class="{ transparent: imageToShow !== 3 }"
+      />
+      <img
+          src="@/assets/img/slides/merc.png"
+          alt="Van Image 3"
+          class="fadeInOutAnimation"
+          :class="{ transparent: imageToShow !== 4 }"
+      />
+      <div class="main-text">
+        <span class="main-text__header">Mobile Valeting Service</span><br/>
+        Hertfordshire | Bedfordshire | Buckinghamshire<br/>
+        +44 7970 797979 | email@grimetoshine.com<br/>
+      </div>
+      <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 || $windowWidth < 1064}"
+         href="#meet-the-team">
+        <i class="fas fa-chevron-down bounce"></i>
+      </a>
     </div>
-    <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 || $windowWidth < 1064}" href="#meet-the-team">
-      <i class="fas fa-chevron-down bounce"></i>
-    </a>
+    <div id="meet-the-team" class="section bg-white">
+      <h1 class="section-header header-text-black">About Us</h1>
+      <meet-the-team></meet-the-team>
+    </div>
+    <div id="previous-work" class="section">
+      <h1 class="section-header">Previous Work</h1>
+      <presentation-carousel></presentation-carousel>
+    </div>
+    <div class="section bg-white">
+      <h1 class="section-header header-text-black">Why Us?</h1>
+      <why-us></why-us>
+    </div>
+    <div id="booking-system" class="section half-screen-height">
+      <h1 class="section-header">Bookings</h1>
+      <booking></booking>
+    </div>
   </div>
-  <div id="meet-the-team" class="section bg-white">
-    <h1 class="section-header header-text-black">About Us</h1>
-    <meet-the-team></meet-the-team>
-  </div>
-  <div id="previous-work" class="section">
-    <h1 class="section-header">Previous Work</h1>
-    <presentation-carousel></presentation-carousel>
-  </div>
-  <div class="section bg-white">
-    <h1 class="section-header header-text-black">Why Us?</h1>
-    <why-us></why-us>
-  </div>
-  <div id="booking-system" class="section half-screen-height">
-    <h1 class="section-header">Bookings</h1>
-    <booking></booking>
-  </div>
-</div>
-  
 </template>
 
 <script>
+/* eslint-disable */
 import Booking from "@/components/booking.vue";
 import MeetTheTeam from "@/components/aboutUs.vue";
 import PresentationCarousel from "@/components/presentationCarousel";
@@ -106,11 +107,10 @@ export default {
 <style lang="scss" scoped>
 .container__home {
   scroll-behavior: smooth !important;
-  max-width: 100vw;
 }
+
 .section {
   padding: 2em 0;
-  max-width: 100vw;
 }
 
 .van-image {
@@ -150,6 +150,7 @@ export default {
     z-index: 2;
     border-radius: 10px;
     width: 96%;
+
     .main-text__header {
       font-family: Grafitty, sans-serif;
       font-size: 3rem;

@@ -1,5 +1,6 @@
 <template>
   <div class="container__services">
+    <div>We have 3 different types of valet services; Bronze, Silver and Gold. Depending on your vehicle size (Small, Medium & Large) we will estimate the size and charge you respectfully, Small being a hatchback and Large being a 7 seater/van. There is also optional extras that can be added on top of your valet service, please ask about this when booking</div>
     <div class="cards">
       <card v-for="service in services"
             :key="service.type"
@@ -13,11 +14,13 @@
     <div class="extras">
       <h1 class="section-header__small">Extras</h1>
       <ul class="extra-services">
-        <li class="service">Leather Care - from £30</li>
+        <li class="service">Leather care - from £30</li>
         <li class="service">Glass polished (Interior & Exterior) - from £10</li>
         <li class="service">Pet hair removal - from £20</li>
-        <li class="service">Engine Bay Clean* - from £25</li>
+        <li class="service">Engine bay clean* - from £25</li>
         <li class="service">Body work hand polished - from £35</li>
+        <li class="service">Driveways - from £??</li>
+        <li class="service">Commercial van cleaning - from £??</li>
       </ul>
       <small>*Engine bays are cleaned at the owners risk and as such we take no responsibility for any damage
         caused</small>
@@ -52,7 +55,7 @@ export default {
             'Dashboard & compartments chamoised',
             'Glass Polished (Exterior only)'
           ],
-          image: null
+          image: require(`@/assets/img/services/bronze.png`)
         },
         {
           type: "silver",
@@ -70,7 +73,7 @@ export default {
             'Glass Polished (Interior & Exterior)',
             'Carpets & Upholstery shampooed'
           ],
-          image: null
+          image: require(`@/assets/img/services/silver.png`)
         },
         {
           type: "gold",
@@ -92,7 +95,7 @@ export default {
             'Exterior rubber & plastics treated',
             'Odour fogger'
           ],
-          image: null
+          image: require(`@/assets/img/services/gold.png`)
         },
       ]
     }
@@ -103,22 +106,17 @@ export default {
 <style lang="scss" scoped>
 
 .container__services {
-  --grid-layout-gap: 0.2em;
-  --grid-column-count: 3;
-  --grid-item--min-width: 22em;
-  --gap-count: calc(var(--grid-column-count) - 1);
-  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
-  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
-
   display: flex;
   flex-direction: column;
   height: 100%;
+  margin-bottom: 3em;
 
   .cards {
     padding: 2px 16px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
-    grid-gap: var(--grid-layout-gap);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top: 10em;
   }
 
   .extras {
@@ -132,6 +130,7 @@ export default {
       flex-direction: column;
       justify-content: space-evenly;
       margin: 2em auto;
+      align-items: center;
 
       .service {
         color: $tertiary-calmer;
