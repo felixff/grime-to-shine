@@ -1,6 +1,6 @@
 <template>
   <div class="booking-system-container">
-    <date-picker v-model="date" :clearable="true" :inputFormat="'dd.mm.yyyy'"></date-picker>
+    <date-picker v-show="false" v-model="date" :clearable="true" :inputFormat="'dd.mm.yyyy'"></date-picker>
   </div>
 </template>
 <script>

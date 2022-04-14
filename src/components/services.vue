@@ -1,14 +1,20 @@
 <template>
   <div class="container__services">
-    <div>We have 3 different types of valet services; Bronze, Silver and Gold. Depending on your vehicle size (Small, Medium & Large) we will estimate the size and charge you respectfully, Small being a hatchback and Large being a 7 seater/van. There is also optional extras that can be added on top of your valet service, please ask about this when booking</div>
+    <div class="services-description">We have 3 different types of valet services; Bronze, Silver and Gold. Depending on your vehicle size (Small,
+      Medium & Large) we will estimate the size and charge you respectfully, Small being a hatchback and Large being a 7
+      seater/van. There is also optional extras that can be added on top of your valet service, please ask about this
+      when booking
+    </div>
     <div class="cards">
       <card v-for="service in services"
             :key="service.type"
             :title="service.title"
             :content="service.text"
             :type="service.type"
-            :image="service.image"
-            :item-list="service.itemList">
+            :image="require(`@/assets/img/services/${service.type}.png`)"
+            :item-list="service.itemList"
+            :startingPrice="service.price"
+      >
       </card>
     </div>
     <div class="extras">
@@ -40,10 +46,16 @@ export default {
   },
   data() {
     return {
+      imagesForService: {
+        bronze: '@/assets/img/services/bronze.png',
+        silver: '@/assets/img/services/bronze.png',
+        gold: '@/assets/img/services/bronze.png',
+      },
       services: [
         {
           type: "bronze",
           title: "Bronze",
+          price: 30,
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
@@ -55,11 +67,11 @@ export default {
             'Dashboard & compartments chamoised',
             'Glass Polished (Exterior only)'
           ],
-          image: require(`@/assets/img/services/bronze.png`)
         },
         {
           type: "silver",
           title: "Silver",
+          price: 60,
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
@@ -73,11 +85,11 @@ export default {
             'Glass Polished (Interior & Exterior)',
             'Carpets & Upholstery shampooed'
           ],
-          image: require(`@/assets/img/services/silver.png`)
         },
         {
           type: "gold",
           title: "Gold",
+          price: 85,
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
@@ -95,7 +107,6 @@ export default {
             'Exterior rubber & plastics treated',
             'Odour fogger'
           ],
-          image: require(`@/assets/img/services/gold.png`)
         },
       ]
     }
@@ -104,19 +115,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width: 1064px) {
+  .container__services {
+    --grid-item--min-width: 28em;
+
+    .extras {
+      width: 60% !important;
+      max-width: 100% !important;
+    }
+
+    .services-description {
+      max-width: 70%;
+    }
+  }
+}
 
 .container__services {
   display: flex;
   flex-direction: column;
   height: 100%;
   margin-bottom: 3em;
+  align-items: center;
+
+  .services-description {
+    color: $tertiary-calmer;
+    padding: 10px;
+  }
 
   .cards {
     padding: 2px 16px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2em;
-    margin-top: 10em;
+    margin-top: 2em;
   }
 
   .extras {
@@ -124,6 +156,7 @@ export default {
     margin-inline: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    max-width: 22em;
 
     .extra-services {
       display: flex;
@@ -141,12 +174,6 @@ export default {
       color: $tertiary-calmer;
       margin: 2em auto;
     }
-  }
-}
-
-@media screen and (min-width: 1064px){
-  .container__services {
-    --grid-item--min-width: 28em;
   }
 }
 </style>

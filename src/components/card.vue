@@ -1,11 +1,12 @@
 <template>
   <div class="card">
-    <img v-if="image !== null" :src="image" class="image" :alt="image">
-    <div class="section-header__small" :class="type !== null ? type : ''">{{ title }}</div>
+    <img v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">
+    <div class="section-header__small service-title" :class="type !== null ? type : ''">{{ title }}</div>
     <div v-if="content !== null" class="content">{{ content }}</div>
-    <ul v-if="itemList !== undefined && itemList.length > 0" class="item-list">
+    <ul v-if="itemList !== undefined && itemList !== null && itemList.length > 0" class="item-list">
       <li v-for="(item, index) in itemList" :key="index" class="listItem"><i class="fas fa-soap"/> {{ item }}</li>
     </ul>
+    <div class="price">From £{{ startingPrice }}</div>
   </div>
 </template>
 
@@ -14,28 +15,14 @@ export default {
   // eslint-disable-next-line
   name: "card",
   components: {},
-  props: {
-    image: {
-      type: String,
-      default: null
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    content: {
-      type: String,
-      default: null
-    },
-    type: {
-      type: String,
-      default: null
-    },
-    itemList: {
-      type: Array,
-      default: () => []
-    }
-  }
+  props: [
+    'image',
+    'title',
+    'content',
+    'type',
+    'itemList',
+    'startingPrice',
+  ]
 }
 </script>
 
@@ -44,7 +31,7 @@ export default {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  height: 30em;
+  height: 34em;
   align-self: center;
   justify-self: center;
   margin-bottom: 1.5em;
@@ -54,9 +41,21 @@ export default {
   padding: 5px;
   border-radius: 2.5%;
   background-color: $primary-brighter;
+  position: relative;
+
+  .service-title {
+    align-self: flex-start;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+    font-size: 2rem;
+  }
 
   .image {
-    display: none;
+    max-width: 30%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-25%, 20%);
   }
 
   .content {
@@ -83,6 +82,16 @@ export default {
         transform: translateY(-2px);
       }
     }
+  }
+
+  .price {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(-15%, -15%);
+    color: $tertiary-calmer;
+    //font-weight: bold;
+    font-size: 2.2rem;
   }
 
   .bronze {

@@ -17,18 +17,22 @@
       <div v-if="closed === false" class="close-button" @click="closeMenu">
         <i class="fas fa-times close"></i>
       </div>
-      <router-link to="/" @click="closeMenu">Home</router-link>
-      <router-link to="/services" @click="closeMenu">Services</router-link>
-      <router-link to="/about" @click="closeMenu">About</router-link>
-      <router-link to="/contact" @click="closeMenu">Contact</router-link>
+      <a href="/" @click="closeMenu">Home</a>
+      <a href="#about" @click="closeMenu">About</a>
+      <a href="#services" @click="closeMenu">Services</a>
+      <a href="#contact" @click="closeMenu">Contact</a>
     </nav>
     <div class="logo">
       <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
     </div>
     <div class="book-socials">
       <div class="socials">
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-instagram"></i>
+        <a href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
       </div>
       <div class="book">
         <a href="#booking-system">Book Now</a>
@@ -37,13 +41,14 @@
   </div>
   <router-view/>
   <footer>
-    <small style="position: absolute; left: 0"
-    >Copyright &copy; 2022, GrimeToShine</small
-    >
+    <footer-component></footer-component>
   </footer>
 </template>
 <script>
+import FooterComponent from "@/components/footerComponent";
+
 export default {
+  components: {FooterComponent},
   mounted() {
     this.windowWidthInternal = window.innerWidth;
     this.$nextTick(() => {
