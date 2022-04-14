@@ -8,11 +8,9 @@
         for longer than the traditional washes. Call now and ask us about our cleaning products for more information.
       </div>
       <div class="description">
-        We use a 350 ltr elite tank that stops the swishing of water when the tank is low, creating a safe environment
-        for
-        road users + ourselves. A Honda generator fitted which is very reliable for pressure at any given time which is
-        connected to our K7 pressure washer/steam cleaners. A wet and dry vac to rinse out your fabrics and also a whole
-        range of professional cleaning solutions and chemicals for all types of material.
+        As we build through the following years and create a reputable customer base, we would also like to branch out
+        and get a few more vans or get a unit where more detailed services can be completed. We are also looking for
+        contracts with car garages or events that take place locally with in us.
       </div>
     </div>
     <img src="@/assets/img/about.jpg" alt="About Image" class="image-about"/>
@@ -36,6 +34,7 @@ export default {
     gap: 4em;
 
     .description__container {
+      align-self: flex-start;
       max-width: 50%;
 
       .description {
@@ -75,7 +74,7 @@ export default {
 
   .image-about {
     max-height: 20em;
-    max-width: 15em;
+    max-width: 80%;
   }
 }
 </style>

@@ -20,7 +20,6 @@
       <a href="/" @click="closeMenu">Home</a>
       <a href="#about" @click="closeMenu">About</a>
       <a href="#services" @click="closeMenu">Services</a>
-      <a href="#contact" @click="closeMenu">Contact</a>
     </nav>
     <div class="logo">
       <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
