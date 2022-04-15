@@ -1,6 +1,7 @@
 <template>
   <div class="container__services">
-    <div class="services-description">We have 3 different types of valet services; Bronze, Silver and Gold. Depending on your vehicle size (Small,
+    <div class="services-description">We have 3 different types of valet services; Bronze, Silver and Gold. Depending on
+      your vehicle size (Small,
       Medium & Large) we will estimate the size and charge you respectfully, Small being a hatchback and Large being a 7
       seater/van. There is also optional extras that can be added on top of your valet service, please ask about this
       when booking
@@ -110,6 +111,7 @@ export default {
             'Extensive vacuum',
             'Door, Boot & Bonnet shuts cleaned',
             'Exterior rubber & plastics treated',
+            'Steam clean',
             'Odour fogger'
           ],
         },
