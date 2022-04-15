@@ -86,7 +86,6 @@ export default {
             'Towel dried',
             'Dashboard & compartments vacuumed',
             'Dashboard & compartments chamoised',
-            'Glass Polished (Exterior only)',
             'Glass Polished (Interior & Exterior)',
             'Carpets & Upholstery shampooed'
           ],
@@ -106,7 +105,6 @@ export default {
             'Towel dried',
             'Dashboard & compartments vacuumed',
             'Dashboard & compartments chamoised',
-            'Glass Polished (Exterior only)',
             'Glass Polished (Interior & Exterior)',
             'Carpets & Upholstery shampooed',
             'Extensive vacuum',
