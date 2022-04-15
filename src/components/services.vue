@@ -12,8 +12,9 @@
             :content="service.text"
             :type="service.type"
             :image="require(`@/assets/img/services/${service.type}.png`)"
-            :item-list="service.itemList"
+            :itemList="service.itemList"
             :startingPrice="service.price"
+            :gradientColor="service.gradientColor"
       >
       </card>
     </div>
@@ -56,11 +57,13 @@ export default {
           type: "bronze",
           title: "Bronze",
           price: 30,
+          gradientColor: '#CD7F32',
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
             'Snow foam pre wash',
-            'Pressure wash, Shampoo & condition Exterior',
+            'Shampoo & condition Exterior',
+            'Pressure wash',
             'Wheels cleaned and tyres dressed',
             'Towel dried',
             'Dashboard & compartments vacuumed',
@@ -72,11 +75,13 @@ export default {
           type: "silver",
           title: "Silver",
           price: 60,
+          gradientColor: '#C0C0C0',
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
             'Snow foam pre wash',
-            'Pressure wash, Shampoo & condition Exterior',
+            'Shampoo & condition Exterior',
+            'Pressure wash',
             'Wheels cleaned and tyres dressed',
             'Towel dried',
             'Dashboard & compartments vacuumed',
@@ -90,11 +95,13 @@ export default {
           type: "gold",
           title: "Gold",
           price: 85,
+          gradientColor: '#D4AF37',
           itemList: [
             'Rubbish removal',
             'Floor mats cleaned',
             'Snow foam pre wash',
-            'Pressure wash, Shampoo & condition Exterior',
+            'Shampoo & condition Exterior',
+            'Pressure wash',
             'Wheels cleaned and tyres dressed',
             'Towel dried',
             'Dashboard & compartments vacuumed',

@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <img v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">
+  <div class="card" :style="gradient">
+    <!--    <img v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">-->
     <div class="section-header__small service-title" :class="type !== null ? type : ''">{{ title }}</div>
     <div v-if="content !== null" class="content">{{ content }}</div>
     <ul v-if="itemList !== undefined && itemList !== null && itemList.length > 0" class="item-list">
@@ -15,6 +15,11 @@ export default {
   // eslint-disable-next-line
   name: "card",
   components: {},
+  computed: {
+    gradient() {
+      return `background-image: linear-gradient(to bottom left, ${this.gradientColor}, ${this.gradientColor} 25%, transparent 35%, transparent 100%); background-image: -webkit-linear-gradient(to bottom left, ${this.gradientColor}, ${this.gradientColor} 25%, transparent 35%, transparent 100%);`;
+    }
+  },
   props: [
     'image',
     'title',
@@ -22,6 +27,7 @@ export default {
     'type',
     'itemList',
     'startingPrice',
+    'gradientColor',
   ]
 }
 </script>
@@ -31,7 +37,7 @@ export default {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  height: 34em;
+  height: 36em;
   align-self: center;
   justify-self: center;
   margin-bottom: 1.5em;
@@ -42,6 +48,8 @@ export default {
   border-radius: 2.5%;
   background-color: $primary-brighter;
   position: relative;
+  background-image: linear-gradient(to bottom left, var(--gradient-color), $gold 20%, transparent 50%, transparent 100%);
+  background-image: -webkit-linear-gradient(to bottom left, $bronze, $bronze 20%, transparent 50%, transparent 100%);
 
   .service-title {
     align-self: flex-start;

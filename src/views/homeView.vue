@@ -1,12 +1,6 @@
 <template>
   <div class="container__home">
     <div class="van-image">
-<!--      <img-->
-<!--          src="@/assets/img/slides/van-left.jpg"-->
-<!--          alt="Van Image 1"-->
-<!--          class="fadeInOutAnimation"-->
-<!--          :class="{ transparent: imageToShow !== 1 }"-->
-<!--      />-->
       <img
           src="@/assets/img/slides/van-right.jpg"
           alt="Van Image 2"
@@ -51,7 +45,7 @@
       <h1 class="section-header">Services</h1>
       <services></services>
     </div>
-    <div id="booking-system" class="section half-screen-height bg-white">
+    <div id="bookings" class="section bg-white">
       <h1 class="section-header">Bookings</h1>
       <booking></booking>
     </div>
