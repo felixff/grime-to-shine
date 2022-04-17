@@ -8,7 +8,7 @@
         <label for="dateInput">Choose Day</label>
         <input type="date" id="dateInput" v-model="date">
         <label for="timeInput">Choose Time</label>
-        <input type="time" id="timeInput" v-model="time">
+        <input type="time" id="timeInput" step="1800" v-model="time">
       </div>
       <div class="bookingForm">
         <label for="name">Name</label>
@@ -27,10 +27,12 @@
   </div>
 </template>
 <script>
+
 export default {
   // eslint-disable-next-line
   name: 'booking',
-  components: {},
+  components: {
+  },
   data() {
     return {
       date: new Date().toDateString(),
@@ -43,7 +45,14 @@ export default {
   },
   methods: {
     requestBooking() {
-
+      this.$store.dispatch('requestBooking', {
+        name: this.name,
+        telephone: this.telephone,
+        email: this.email,
+        date: this.date,
+        time: this.time,
+        message: this.message,
+      })
     }
   }
 }

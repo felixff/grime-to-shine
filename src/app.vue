@@ -20,7 +20,7 @@
       <a href="/" @click="closeMenu">Home</a>
       <a href="#about" @click="closeMenu">About</a>
       <a href="#services" @click="closeMenu">Services</a>
-      <a href="#bookings" @click="closeMenu">Bookings</a>
+      <a href="#testimonials" @click="closeMenu">Testimonials</a>
     </nav>
     <div class="logo">
       <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
@@ -35,7 +35,7 @@
         </a>
       </div>
       <div class="book">
-        <a href="#booking-system">Book Now</a>
+        <a href="#bookings">Book Now</a>
       </div>
     </div>
   </div>

@@ -45,8 +45,12 @@
       <h1 class="section-header">Services</h1>
       <services></services>
     </div>
+    <div id="testimonials" class="section bg-white">
+      <h1 class="section-header">Testimonials</h1>
+      <testimonials></testimonials>
+    </div>
     <div id="bookings" class="section bg-white">
-      <h1 class="section-header">Bookings</h1>
+      <h1 class="section-header">Book Now</h1>
       <booking></booking>
     </div>
   </div>
@@ -59,10 +63,12 @@ import MeetTheTeam from "@/components/aboutUs.vue";
 import PresentationCarousel from "@/components/presentationCarousel";
 import WhyUs from "@/components/whyUs";
 import Services from "@/components/services";
+import Testimonials from "@/components/testimonials";
 
 export default {
   name: "homeView",
   components: {
+    Testimonials,
     PresentationCarousel,
     Booking,
     MeetTheTeam,
