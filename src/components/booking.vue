@@ -7,8 +7,16 @@
       <div class="picker">
         <label for="dateInput">Choose Day</label>
         <input type="date" id="dateInput" v-model="date">
-        <label for="timeInput">Choose Time</label>
-        <input type="time" id="timeInput" step="1800" v-model="time">
+        <div class="time-slots">
+          <template v-for="(hour, index) in workHours" :key="index">
+            <div class="interval" :class="{ 'hidden' : isAvailable(`${hour}:00`) }">
+              {{ hour }}:00
+            </div>
+            <div class="interval">
+              {{ hour }}:30
+            </div>
+          </template>
+        </div>
       </div>
       <div class="bookingForm">
         <label for="name">Name</label>
@@ -31,8 +39,7 @@
 export default {
   // eslint-disable-next-line
   name: 'booking',
-  components: {
-  },
+  components: {},
   data() {
     return {
       date: new Date().toDateString(),
@@ -40,8 +47,19 @@ export default {
       name: null,
       telephone: null,
       email: null,
-      message: null
+      message: null,
+      workHours: [8, 9, 10, 11, 12, 13, 14, 15]
     }
+  },
+  mounted() {
+    this.$store.dispatch('getAllBookings');
+    console.log(typeof(this.$store.state.existingBookings));
+  },
+  computed: {
+    existingBookings() {
+      console.log(typeof(this.$store.state.existingBookings));
+      return this.$store.state.existingBookings ?? [];
+    },
   },
   methods: {
     requestBooking() {
@@ -53,6 +71,9 @@ export default {
         time: this.time,
         message: this.message,
       })
+    },
+    isAvailable(timeSlot) {
+      return timeSlot;
     }
   }
 }
@@ -121,6 +142,51 @@ export default {
       justify-content: flex-start;
       align-self: flex-start;
       gap: 0.5em;
+
+      .time-slots {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        .interval {
+
+          &:nth-of-type(1) {
+            border-top: 1px $primary solid;
+          }
+
+          &:nth-of-type(2) {
+            border-top: 1px $primary solid;
+          }
+
+          &:nth-of-type(3) {
+            border-top: 1px $primary solid;
+          }
+
+          &:nth-of-type(4) {
+            border-top: 1px $primary solid;
+          }
+
+          &:nth-of-type(4n-3) {
+            border-left: 1px $primary solid;
+            border-bottom: 1px $primary solid;
+          }
+
+          &:nth-of-type(4n-2) {
+            border-left: 1px $primary solid;
+            border-bottom: 1px $primary solid;
+          }
+
+          &:nth-of-type(4n-1) {
+            border-left: 1px $primary solid;
+            border-bottom: 1px $primary solid;
+          }
+
+          &:nth-of-type(4n) {
+            border-left: 1px $primary solid;
+            border-bottom: 1px $primary solid;
+            border-right: 1px $primary solid;
+          }
+        }
+      }
     }
 
     .bookingForm {

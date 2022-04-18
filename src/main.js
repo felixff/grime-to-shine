@@ -16,12 +16,14 @@ import {dom} from "@fortawesome/fontawesome-svg-core";
 
 dom.watch();
 import {VueWindowSizePlugin} from 'vue-window-size/option-api';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import _ from 'lodash';
 
 createApp(App)
   .use(store)
   .use(router)
+  .use(_)
   .use(VueWindowSizePlugin)
   .use(VueAxios, axios)
   .mount('#app')
