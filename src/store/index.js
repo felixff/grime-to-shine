@@ -11,11 +11,13 @@ export default createStore({
     }
   },
   actions: {
+    // eslint-disable-next-line
     async requestBooking(state, {name, telephone, email, date, time, message}) {
-      axios.get('https://www.googleapis.com/calendar/v3/calendars/faragau.florin@gmail.com/events').then((response) => {
+      axios.get('/api/api.php/booking/list').then((response) => {
         console.log(response.data)
       }, () => {
-        console.log(name, telephone, email, date, time, message);
+        console.log('tralalala')
+        // console.log(name, telephone, email, date, time, message);
       })
     }
   },
