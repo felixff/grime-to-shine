@@ -110,7 +110,6 @@ export default {
 
       if (bookingsForTheDay.length > 0) {
         bookingsForTheDay.forEach(booking => {
-          console.log(booking.start <= timeSlot && timeSlot <= booking.end);
           if (booking.start <= timeSlot && timeSlot <= booking.end) {
             found = true;
           }

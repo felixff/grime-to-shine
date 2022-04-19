@@ -37,8 +37,7 @@ export default createStore({
         address: address,
         postcode: postcode,
         message: message
-      }).then((response) => {
-        console.log(response)
+      }).then(() => {
         dispatch('getAllBookings');
       }, () => {
         console.log('Not connected');
