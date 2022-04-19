@@ -5,14 +5,19 @@
 
       </div>
       <div class="picker">
-        <label for="dateInput">Choose Day</label>
+        <label for="dateInput">Date</label>
         <input type="date" id="dateInput" v-model="date">
-        <div class="time-slots">
+        <label v-show="date !== null" for="time-slots">Available Slots</label>
+        <div v-if="existingBookings !== undefined" v-show="date !== null" id="time-slots" class="time-slots">
           <template v-for="(hour, index) in workHours" :key="index">
-            <div class="interval" :class="{ 'hidden' : isAvailable(`${hour}:00`) }">
+            <div class="interval"
+                 :class="{ 'not-available' : isAvailable(`${hour}:00`) === false, 'selected' : selectedInterval === `${hour}:00`}"
+                 @click="selectInterval(`${hour}:00`)">
               {{ hour }}:00
             </div>
-            <div class="interval">
+            <div class="interval"
+                 :class="{ 'not-available' : isAvailable(`${hour}:30`) === false, 'selected' : selectedInterval === `${hour}:30`}"
+                 @click="selectInterval(`${hour}:30`)">
               {{ hour }}:30
             </div>
           </template>
@@ -35,6 +40,7 @@
   </div>
 </template>
 <script>
+import _ from "lodash";
 
 export default {
   // eslint-disable-next-line
@@ -42,22 +48,20 @@ export default {
   components: {},
   data() {
     return {
-      date: new Date().toDateString(),
-      time: '00:00',
+      date: null,
       name: null,
       telephone: null,
       email: null,
       message: null,
+      selectedInterval: null,
       workHours: [8, 9, 10, 11, 12, 13, 14, 15]
     }
   },
   mounted() {
     this.$store.dispatch('getAllBookings');
-    console.log(typeof(this.$store.state.existingBookings));
   },
   computed: {
     existingBookings() {
-      console.log(typeof(this.$store.state.existingBookings));
       return this.$store.state.existingBookings ?? [];
     },
   },
@@ -68,12 +72,20 @@ export default {
         telephone: this.telephone,
         email: this.email,
         date: this.date,
-        time: this.time,
+        time: this.selectedInterval,
         message: this.message,
       })
     },
     isAvailable(timeSlot) {
-      return timeSlot;
+      let found = false;
+      let bookingsForTheDay = _.get(this.existingBookings, this.date, []);
+      if (bookingsForTheDay.length > 0 && bookingsForTheDay.includes(timeSlot)) {
+        found = true;
+      }
+      return found === false;
+    },
+    selectInterval(interval) {
+      this.selectedInterval = interval;
     }
   }
 }
@@ -106,6 +118,17 @@ export default {
       width: 30% !important;
     }
   }
+}
+
+.not-available {
+  background-color: $primary !important;
+  color: $tertiary-calmer !important;
+  cursor: not-allowed !important;
+}
+
+.selected {
+  background-color: $secondary !important;
+  color: $tertiary-calmer !important;
 }
 
 .container__booking-system {
@@ -141,28 +164,17 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-self: flex-start;
-      gap: 0.5em;
+      gap: 3em;
 
       .time-slots {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        border-radius: 5px;
+        border: 1px $primary solid;
 
         .interval {
-
-          &:nth-of-type(1) {
-            border-top: 1px $primary solid;
-          }
-
-          &:nth-of-type(2) {
-            border-top: 1px $primary solid;
-          }
-
-          &:nth-of-type(3) {
-            border-top: 1px $primary solid;
-          }
-
-          &:nth-of-type(4) {
-            border-top: 1px $primary solid;
+          &:hover {
+            cursor: pointer;
           }
 
           &:nth-of-type(4n-3) {

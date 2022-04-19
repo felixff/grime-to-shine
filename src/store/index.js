@@ -5,7 +5,8 @@ const SET_EXISTING_BOOKINGS = 'setExistingBookings';
 
 export default createStore({
   state: {
-    scrollPosition: 0
+    scrollPosition: 0,
+    existingBookings: []
   },
   getters: {},
   mutations: {
