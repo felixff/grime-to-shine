@@ -38,20 +38,16 @@ export default {
           name: 'Harriett V.'
         },
         {
-          content: 'Nice work on your Car valeting. Just what I was looking for.',
-          name: 'Harriett V.'
+          content: 'It\'s really wonderful. Car valeting has completely surpassed our expectations.',
+          name: 'Elfreda Q.'
         },
         {
-          content: 'Nice work on your Car valeting. Just what I was looking for.',
-          name: 'Harriett V.'
+          content: 'Really good. I will refer everyone I know.',
+          name: 'Dorette G.'
         },
         {
-          content: 'Nice work on your Car valeting. Just what I was looking for.',
-          name: 'Harriett V.'
-        },
-        {
-          content: 'Nice work on your Car valeting. Just what I was looking for.',
-          name: 'Harriett V.'
+          content: 'Car valeting has completely surpassed our expectations. You guys rock!',
+          name: 'Abigale D.'
         },
       ]
     }
