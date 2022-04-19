@@ -45,13 +45,10 @@
       <h1 class="section-header">Services</h1>
       <services></services>
     </div>
-    <div id="testimonials" class="section bg-white">
-      <h1 class="section-header">Testimonials</h1>
-      <testimonials></testimonials>
-    </div>
     <div id="bookings" class="section bg-white">
       <h1 class="section-header">Book Now</h1>
       <booking></booking>
+      <testimonials></testimonials>
     </div>
   </div>
 </template>
@@ -129,7 +126,6 @@ export default {
 
     .van-image {
       height: 100vh;
-      border-bottom: none;
 
       img {
         display: block;
@@ -157,7 +153,6 @@ export default {
     align-items: center;
     overflow: hidden;
     position: relative;
-    border-bottom: 1px solid $tertiary-calmer;
 
     img {
       //display: none;

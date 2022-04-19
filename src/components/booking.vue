@@ -6,22 +6,24 @@
       </div>
       <div class="picker">
         <label for="dateInput">Date</label>
-        <input type="date" id="dateInput" v-model="date">
+        <input type="date" id="dateInput" v-model="date" :min="minDate" :max="maxDate">
         <label v-show="date !== null" for="time-slots">Available Slots</label>
-        <div v-if="existingBookings !== undefined" v-show="date !== null" id="time-slots" class="time-slots">
-          <template v-for="(hour, index) in workHours" :key="index">
-            <div class="interval"
-                 :class="{ 'not-available' : isAvailable(`${hour}:00`) === false, 'selected' : selectedInterval === `${hour}:00`}"
-                 @click="selectInterval(`${hour}:00`)">
-              {{ hour }}:00
-            </div>
-            <div class="interval"
-                 :class="{ 'not-available' : isAvailable(`${hour}:30`) === false, 'selected' : selectedInterval === `${hour}:30`}"
-                 @click="selectInterval(`${hour}:30`)">
-              {{ hour }}:30
-            </div>
-          </template>
-        </div>
+        <transition name="slide-fade">
+          <div v-show="date !== null && existingBookings !== undefined" id="time-slots" class="time-slots">
+            <template v-for="(hour, index) in workHours" :key="index">
+              <div class="interval"
+                   :class="{ 'not-available' : isAvailable(`${hour}:00`) === false, 'selected' : selectedInterval === `${hour}:00`}"
+                   @click="selectInterval(`${hour}:00`)">
+                {{ hour }}:00
+              </div>
+              <div class="interval"
+                   :class="{ 'not-available' : isAvailable(`${hour}:30`) === false, 'selected' : selectedInterval === `${hour}:30`}"
+                   @click="selectInterval(`${hour}:30`)">
+                {{ hour }}:30
+              </div>
+            </template>
+          </div>
+        </transition>
       </div>
       <div class="bookingForm">
         <label for="name">Name</label>
@@ -41,6 +43,7 @@
 </template>
 <script>
 import _ from "lodash";
+import moment from 'moment'
 
 export default {
   // eslint-disable-next-line
@@ -64,6 +67,12 @@ export default {
     existingBookings() {
       return this.$store.state.existingBookings ?? [];
     },
+    minDate() {
+      return moment(new Date()).format('Y-MM-DD');
+    },
+    maxDate() {
+      return moment(new Date()).add(30, 'days').format('Y-MM-DD');
+    }
   },
   methods: {
     requestBooking() {
@@ -78,11 +87,18 @@ export default {
     },
     isAvailable(timeSlot) {
       let found = false;
+      let invalid = false;
+
       let bookingsForTheDay = _.get(this.existingBookings, this.date, []);
       if (bookingsForTheDay.length > 0 && bookingsForTheDay.includes(timeSlot)) {
         found = true;
       }
-      return found === false;
+
+      if (moment(new Date()).get('hour') === 30) {
+        invalid = true;
+      }
+
+      return found === false && invalid === false;
     },
     selectInterval(interval) {
       this.selectedInterval = interval;
@@ -164,7 +180,8 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-self: flex-start;
-      gap: 3em;
+      gap: 2em;
+      margin-bottom: 2em;
 
       .time-slots {
         display: grid;
@@ -173,6 +190,7 @@ export default {
         border: 1px $primary solid;
 
         .interval {
+          padding: 5px;
           &:hover {
             cursor: pointer;
           }

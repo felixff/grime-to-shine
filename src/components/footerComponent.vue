@@ -18,10 +18,13 @@
           <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
             <i class="fab fa-instagram footer__social"></i>
           </a>
+          <a href="https://snapchat.com/add/Grimetashine" target="_blank">
+            <i class="fab fa-snapchat footer__social"></i>
+          </a>
         </div>
       </div>
     </div>
-    <div class="copyright">&copy; Copyright 2022, CoreWeb Solutions</div>
+    <div class="copyright">&copy; Copyright 2022, Grime To Shine Valeting | Designed and Built by CoreWeb Solutions</div>
   </div>
 </template>
 

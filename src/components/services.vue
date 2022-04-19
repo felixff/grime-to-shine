@@ -27,8 +27,8 @@
         <li class="service">Pet hair removal - from £20</li>
         <li class="service">Engine bay clean* - from £25</li>
         <li class="service">Body work hand polished - from £35</li>
-        <li class="service">Driveways - from £??</li>
-        <li class="service">Commercial van cleaning - from £??</li>
+        <li class="service">Commercial van cleaning - from £20</li>
+        <li class="service">Driveways and Patios - Call for Quote</li>
       </ul>
       <small>*Engine bays are cleaned at the owners risk and as such we take no responsibility for any damage
         caused</small>

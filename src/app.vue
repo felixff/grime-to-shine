@@ -14,13 +14,12 @@
           'navbar-visible': navbarHidden === false,
         }"
     >
-      <div v-if="closed === false" class="close-button" @click="closeMenu">
+      <div v-if="closed === false && windowWidthInternal < 1064" class="close-button" @click="closeMenu">
         <i class="fas fa-times close"></i>
       </div>
       <a href="/" @click="closeMenu">Home</a>
       <a href="#about" @click="closeMenu">About</a>
       <a href="#services" @click="closeMenu">Services</a>
-      <a href="#testimonials" @click="closeMenu">Testimonials</a>
     </nav>
     <div class="logo">
       <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
@@ -32,6 +31,9 @@
         </a>
         <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
           <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://snapchat.com/add/Grimetashine" target="_blank">
+          <i class="fab fa-snapchat"></i>
         </a>
       </div>
       <div class="book">
@@ -52,8 +54,8 @@ export default {
   mounted() {
     this.windowWidthInternal = window.innerWidth;
     this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-      window.addEventListener("scroll", this.onScroll);
+      window.addEventListener("resize", this.onResize, {passive: true});
+      window.addEventListener("scroll", this.onScroll, {passive: true});
     });
   },
   beforeUnmount() {
