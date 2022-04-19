@@ -27,13 +27,17 @@
       </div>
       <div class="bookingForm">
         <label for="name">Name</label>
-        <input type="text" id="name" maxlength="60" required>
+        <input type="text" v-model="name" id="name" maxlength="60" required>
+        <label for="address">Address</label>
+        <input type="text" v-model="address" id="address" maxlength="60" required>
+        <label for="postcode">Postcode</label>
+        <input type="text" v-model="postcode" id="postcode" maxlength="60" required>
         <label for="telephone">Telephone</label>
-        <input type="tel" id="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        <input type="tel" v-model="telephone" id="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
         <label for="email">Email</label>
-        <input type="email" id="email" maxlength="100" required>
+        <input type="email" v-model="email" id="email" maxlength="100" required>
         <label for="message">Message</label>
-        <textarea id="message" maxlength="500" required></textarea>
+        <textarea id="message" v-model="message" maxlength="500" required></textarea>
       </div>
     </div>
     <button type="submit" class="text-white font-bold py-1 px-5 rounded" @click.prevent="requestBooking()">Request
@@ -57,7 +61,9 @@ export default {
       email: null,
       message: null,
       selectedInterval: null,
-      workHours: [8, 9, 10, 11, 12, 13, 14, 15]
+      address: null,
+      postcode: null,
+      workHours: ['08', '09', '10', '11', '12', '13', '14', '15']
     }
   },
   mounted() {
@@ -68,7 +74,7 @@ export default {
       return this.$store.state.existingBookings ?? [];
     },
     minDate() {
-      return moment(new Date()).format('Y-MM-DD');
+      return moment(new Date()).add(1, 'day').format('Y-MM-DD');
     },
     maxDate() {
       return moment(new Date()).add(30, 'days').format('Y-MM-DD');
@@ -83,18 +89,35 @@ export default {
         date: this.date,
         time: this.selectedInterval,
         message: this.message,
+        address: this.address,
+        postcode: this.postcode,
       })
+
+      this.name = null;
+      this.telephone = null;
+      this.email = null;
+      this.date = null;
+      this.time = null;
+      this.message = null;
+      this.address = null;
+      this.postcode = null;
     },
     isAvailable(timeSlot) {
       let found = false;
       let invalid = false;
 
       let bookingsForTheDay = _.get(this.existingBookings, this.date, []);
-      if (bookingsForTheDay.length > 0 && bookingsForTheDay.includes(timeSlot)) {
-        found = true;
+
+      if (bookingsForTheDay.length > 0) {
+        bookingsForTheDay.forEach(booking => {
+          console.log(booking.start <= timeSlot && timeSlot <= booking.end);
+          if (booking.start <= timeSlot && timeSlot <= booking.end) {
+            found = true;
+          }
+        })
       }
 
-      if (moment(new Date()).get('hour') === 30) {
+      if (moment(new Date()).format('H:i') > timeSlot && this.date === moment(new Date()).format('Y-MM-DD')) {
         invalid = true;
       }
 
@@ -140,6 +163,7 @@ export default {
   background-color: $primary !important;
   color: $tertiary-calmer !important;
   cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 .selected {

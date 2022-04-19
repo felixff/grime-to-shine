@@ -27,14 +27,15 @@ export default createStore({
       })
     },
     // eslint-disable-next-line
-    async requestBooking(state, {name, telephone, email, date, time, message}) {
+    async requestBooking({state, dispatch }, {name, telephone, email, date, time, message}) {
       axios.post('/api/api.php/booking/add', {
         date: date,
         time: time,
         name: name,
         address: message
       }).then((response) => {
-        console.log(response.data);
+        console.log(response)
+        dispatch('getAllBookings');
       }, () => {
         console.log('Not connected');
         // console.log(name, telephone, email, date, time, message);
