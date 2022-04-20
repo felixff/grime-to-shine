@@ -2,18 +2,21 @@
   <div class="container__home">
     <div class="van-image">
       <img
+          loading="lazy"
           src="@/assets/img/slides/van-right.jpg"
           alt="Van Image 2"
           class="fadeInOutAnimation"
           :class="{ transparent: imageToShow !== 1 }"
       />
       <img
+          loading="lazy"
           src="@/assets/img/slides/suv.jpg"
           alt="Van Image 3"
           class="fadeInOutAnimation"
           :class="{ transparent: imageToShow !== 2 }"
       />
       <img
+          loading="lazy"
           src="@/assets/img/slides/merc.png"
           alt="Van Image 3"
           class="fadeInOutAnimation"

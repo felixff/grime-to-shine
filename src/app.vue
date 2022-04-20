@@ -22,7 +22,7 @@
       <a href="#services" @click="closeMenu">Services</a>
     </nav>
     <div class="logo">
-      <img src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
+      <img loading="lazy" src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
     </div>
     <div class="book-socials">
       <div class="socials">

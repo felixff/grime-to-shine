@@ -1,6 +1,6 @@
 <template>
   <div class="card" :style="gradient">
-    <!--    <img v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">-->
+    <!--    <img loading="lazy" v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">-->
     <div class="section-header__small service-title" :class="type !== null ? type : ''">{{ title }}</div>
     <div v-if="content !== null" class="content">{{ content }}</div>
     <ul v-if="itemList !== undefined && itemList !== null && itemList.length > 0" class="item-list">
