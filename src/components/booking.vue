@@ -43,6 +43,7 @@
     <button type="submit" class="text-white font-bold py-1 px-5 rounded" @click.prevent="requestBooking()">Request
       Booking
     </button>
+    <div v-show="name === null && bookingActionResult !== null" class="action-result">{{ bookingActionResult }}</div>
   </div>
 </template>
 <script>
@@ -78,6 +79,9 @@ export default {
     },
     maxDate() {
       return moment(new Date()).add(30, 'days').format('Y-MM-DD');
+    },
+    bookingActionResult() {
+      return this.date !== null ? null : this.$store.state.bookingActionResult ?? null;
     }
   },
   methods: {
@@ -101,6 +105,7 @@ export default {
       this.message = null;
       this.address = null;
       this.postcode = null;
+      this.selectedInterval = null;
     },
     isAvailable(timeSlot) {
       let found = false;

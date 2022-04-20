@@ -2,10 +2,12 @@ import {createStore} from 'vuex'
 import axios from "axios";
 
 const SET_EXISTING_BOOKINGS = 'setExistingBookings';
+const SET_BOOKING_ACTION_RESULT = 'setBookingActionResult';
 
 export default createStore({
   state: {
     scrollPosition: 0,
+    bookingActionResult: null,
     existingBookings: []
   },
   getters: {},
@@ -15,6 +17,9 @@ export default createStore({
     },
     [SET_EXISTING_BOOKINGS](state, existingBookings) {
       state.existingBookings = existingBookings.data;
+    },
+    [SET_BOOKING_ACTION_RESULT](state, bookingActionResult) {
+      state.bookingActionResult = bookingActionResult;
     }
   },
   actions: {
@@ -27,7 +32,7 @@ export default createStore({
       })
     },
     // eslint-disable-next-line
-    async requestBooking({state, dispatch }, {name, address, postcode, telephone, email, date, time, message}) {
+    async requestBooking({state, dispatch, commit}, {name, address, postcode, telephone, email, date, time, message}) {
       axios.post('/api/api.php/booking/add', {
         date: date,
         time: time,
@@ -39,9 +44,9 @@ export default createStore({
         message: message
       }).then(() => {
         dispatch('getAllBookings');
+        commit(SET_EXISTING_BOOKINGS, 'Your booking request has been submitted');
       }, () => {
-        console.log('Not connected');
-        // console.log(name, telephone, email, date, time, message);
+        commit(SET_EXISTING_BOOKINGS, 'Your booking request has failed, please try again!')
       })
     },
   },
