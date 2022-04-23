@@ -1,43 +1,95 @@
 <template>
   <div class="container__booking-system">
-    <div class="bookingData">
-      <div class="availableDates">
-
-      </div>
+    <div class="booking-data">
       <div class="picker">
-        <label for="dateInput">Date</label>
-        <input type="date" id="dateInput" v-model="date" :min="minDate" :max="maxDate">
-        <label v-show="date !== null" for="time-slots">Available Slots</label>
-        <transition name="slide-fade">
-          <div v-show="date !== null && existingBookings !== undefined" id="time-slots" class="time-slots">
+        <div class="input-field-container">
+          <label class="label">
+            Date
+          </label>
+          <datepicker v-model="date"
+                      :minDate="minDateAvailable"
+                      :maxDate="maxDateAvailable"
+                      :preventMinMaxNavigation="true"
+                      :enableTimePicker="false"
+                      :startDate="minDateAvailable"
+                      :inline="false"
+                      :format="'dd/MM/yyyy'"
+                      :class="{'dp__icon-hidden': date !== null}"
+                      :clearable="true"
+                      style="width: 100%"
+          >
+          </datepicker>
+        </div>
+        <div class="input-field-container">
+          <label for="name">Service</label>
+          <div class="service-level-container">
+            <div class="service-level bronze" :class="{'selected' : serviceLevel === 'bronze'}"
+                 @click="setServiceLevel('bronze')">Bronze
+            </div>
+            <div class="service-level silver" :class="{'selected' : serviceLevel === 'silver'}"
+                 @click="setServiceLevel('silver')">Silver
+            </div>
+            <div class="service-level gold" :class="{'selected' : serviceLevel === 'gold'}"
+                 @click="setServiceLevel('gold')">Gold
+            </div>
+            <div class="service-level extra" :class="{'selected' : serviceLevel === 'extra'}"
+                 @click="setServiceLevel('extra')">Extras
+            </div>
+          </div>
+        </div>
+        <div class="input-field-container">
+          <label for="time-slots">Available Slots</label>
+          <div id="time-slots" class="time-slots"
+               :class="[{'disabled' : date === null}, { 'invalid': missingData.includes('date') && enableValidation}]">
             <template v-for="(hour, index) in workHours" :key="index">
               <div class="interval"
                    :class="{ 'not-available' : isAvailable(`${hour}:00`) === false, 'selected' : selectedInterval === `${hour}:00`}"
+                   :style="`--background-color: ${backgroundColor}`"
                    @click="selectInterval(`${hour}:00`)">
                 {{ hour }}:00
               </div>
               <div class="interval"
                    :class="{ 'not-available' : isAvailable(`${hour}:30`) === false, 'selected' : selectedInterval === `${hour}:30`}"
+                   :style="`--background-color: ${backgroundColor}`"
                    @click="selectInterval(`${hour}:30`)">
                 {{ hour }}:30
               </div>
             </template>
           </div>
-        </transition>
+        </div>
       </div>
-      <div class="bookingForm">
-        <label for="name">Name</label>
-        <input type="text" v-model="name" id="name" maxlength="60" required>
-        <label for="address">Address</label>
-        <input type="text" v-model="address" id="address" maxlength="60" required>
-        <label for="postcode">Postcode</label>
-        <input type="text" v-model="postcode" id="postcode" maxlength="60" required>
-        <label for="telephone">Telephone</label>
-        <input type="tel" v-model="telephone" id="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-        <label for="email">Email</label>
-        <input type="email" v-model="email" id="email" maxlength="100" required>
-        <label for="message">Message</label>
-        <textarea id="message" v-model="message" maxlength="500" required></textarea>
+      <div class="separator"></div>
+      <div class="booking-form">
+        <div class="contact-section">
+          <div class="input-field-container">
+            <label for="name">Name</label>
+            <input type="text" v-model="name" :class="{ 'invalid' : missingData.includes('name') && enableValidation}" id="name" maxlength="60" placeholder="John Doe" required>
+          </div>
+          <div class="input-field-container">
+            <label for="telephone">Telephone</label>
+            <input type="tel" v-model="telephone" :class="{ 'invalid' : missingData.includes('telephone') && enableValidation}" id="telephone" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
+                   placeholder="07777777777" required>
+          </div>
+        </div>
+        <div class="address-section">
+          <div class="input-field-container">
+            <label for="address">Address</label>
+            <input type="text" v-model="address" :class="{ 'invalid' : missingData.includes('address') && enableValidation}" id="address" maxlength="60" placeholder="Booking Address"
+                   required>
+          </div>
+          <div class="input-field-container">
+            <label for="postcode">Postcode</label>
+            <input type="text" v-model="postcode" :class="{ 'invalid' : missingData.includes('postcode') && enableValidation}" id="postcode" maxlength="60" placeholder="IP1 11XX" required>
+          </div>
+        </div>
+        <div class="input-field-container">
+          <label for="email">Email</label>
+          <input type="email" v-model="email" :class="{ 'invalid' : missingData.includes('email') && enableValidation}" id="email" maxlength="100" placeholder="email@placeholder.com" required>
+        </div>
+        <div class="input-field-container">
+          <label for="message">Message</label>
+          <textarea id="message" v-model="message" maxlength="500" required></textarea>
+        </div>
       </div>
     </div>
     <button type="submit" class="text-white font-bold py-1 px-5 rounded" @click.prevent="requestBooking()">Request
@@ -49,6 +101,7 @@
 <script>
 import _ from "lodash";
 import moment from 'moment'
+import {toRaw} from "vue";
 
 export default {
   // eslint-disable-next-line
@@ -64,6 +117,9 @@ export default {
       selectedInterval: null,
       address: null,
       postcode: null,
+      serviceLevel: 'extra',
+      backgroundColor: null,
+      enableValidation: false,
       workHours: ['08', '09', '10', '11', '12', '13', '14', '15']
     }
   },
@@ -74,18 +130,81 @@ export default {
     existingBookings() {
       return this.$store.state.existingBookings ?? [];
     },
-    minDate() {
+    minDateAvailable() {
       return moment(new Date()).add(1, 'day').format('Y-MM-DD');
     },
-    maxDate() {
+    maxDateAvailable() {
       return moment(new Date()).add(30, 'days').format('Y-MM-DD');
     },
     bookingActionResult() {
       return this.date !== null ? null : this.$store.state.bookingActionResult ?? null;
+    },
+    missingData() {
+      let missingFields = [];
+
+      if (this.date === null) {
+        missingFields.push('date');
+      }
+
+      if (this.serviceLevel === null) {
+        missingFields.push('serviceLevel');
+      }
+
+      if (this.selectedInterval === null) {
+        missingFields.push('selectedInterval');
+      }
+
+      if (this.name === null) {
+        missingFields.push('name');
+      }
+
+      if (this.telephone === null) {
+        missingFields.push('telephone');
+      }
+
+      if (this.address === null) {
+        missingFields.push('address');
+      }
+
+      if (this.postcode === null) {
+        missingFields.push('postcode');
+      }
+
+      if (this.email === null) {
+        missingFields.push('email');
+      }
+
+      return missingFields;
+    }
+  },
+  watch: {
+    date: {
+      handler() {
+        this.setServiceLevel(this.serviceLevel);
+      },
+      immediate: true
     }
   },
   methods: {
+    setServiceLevel(serviceLevel) {
+      this.serviceLevel = serviceLevel;
+
+      if (serviceLevel === 'bronze') {
+        this.backgroundColor = '#CD7F32';
+      } else if (serviceLevel === 'silver') {
+        this.backgroundColor = '#C0C0C0';
+      } else if (serviceLevel === 'gold') {
+        this.backgroundColor = '#D4AF37';
+      } else {
+        this.backgroundColor = '#6d431d'
+      }
+    },
     requestBooking() {
+      if (this.missingData.length >= 1) {
+        this.enableValidation = true;
+        return;
+      }
+
       this.$store.dispatch('requestBooking', {
         name: this.name,
         telephone: this.telephone,
@@ -95,6 +214,7 @@ export default {
         message: this.message,
         address: this.address,
         postcode: this.postcode,
+        serviceLevel: this.serviceLevel,
       })
 
       this.name = null;
@@ -106,26 +226,28 @@ export default {
       this.address = null;
       this.postcode = null;
       this.selectedInterval = null;
+      this.serviceLevel = 'extra';
+      this.enableValidation = false;
     },
     isAvailable(timeSlot) {
-      let found = false;
-      let invalid = false;
+      if (this.date === null) {
+        return
+      }
 
-      let bookingsForTheDay = _.get(this.existingBookings, this.date, []);
+      let found = false;
+
+      let dateToCheck = new moment(new Date(this.date)).format('Y-MM-DD');
+      let bookingsForTheDay = _.get(toRaw(this.existingBookings), dateToCheck, []);
 
       if (bookingsForTheDay.length > 0) {
-        bookingsForTheDay.forEach(booking => {
+        _.forEach(bookingsForTheDay, booking => {
           if (booking.start <= timeSlot && timeSlot <= booking.end) {
             found = true;
           }
         })
       }
 
-      if (moment(new Date()).format('H:i') > timeSlot && this.date === moment(new Date()).format('Y-MM-DD')) {
-        invalid = true;
-      }
-
-      return found === false && invalid === false;
+      return found === false;
     },
     selectInterval(interval) {
       this.selectedInterval = interval;
@@ -141,18 +263,26 @@ export default {
     align-items: center;
     justify-content: center;
 
-    .bookingData {
+    .booking-data {
       gap: 4em;
       flex-wrap: nowrap;
       flex-direction: row !important;
+
+      .separator {
+        min-height: 25em !important;
+        width: 1px;
+        border-right: 1px $primary solid;
+      }
 
       .picker {
         width: 15% !important;
         display: flex;
         flex-direction: column;
+        align-self: flex-start;
+        justify-content: flex-start;
       }
 
-      .bookingForm {
+      .booking-form {
         width: 30% !important;
       }
     }
@@ -164,9 +294,9 @@ export default {
 }
 
 .not-available {
-  background-color: $primary !important;
-  color: $tertiary-calmer !important;
-  cursor: not-allowed !important;
+  --background-color: $primary;
+  background-color: var(--background-color) !important;
+  color: $primary !important;
   pointer-events: none !important;
 }
 
@@ -175,13 +305,55 @@ export default {
   color: $tertiary-calmer !important;
 }
 
+.serviceSelected {
+  box-shadow: inset 2px $tertiary-calmer;
+}
+
+.input-field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+
+  textarea {
+    border-radius: 4px;
+    padding: 5px;
+
+    &:focus {
+      outline: none !important;
+      border: none;
+      box-shadow: 0 0 2px $primary;
+    }
+  }
+
+  input {
+    width: 100%;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none !important;
+      border: none;
+      box-shadow: 0 0 2px $primary;
+    }
+  }
+}
+
+.dp__icon-hidden {
+  svg {
+    display: none !important;
+  }
+}
+
 .container__booking-system {
   padding: 10px;
   width: 100%;
 
   input {
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px 0 rgba(38, 33, 33, 0.2);
+    //border-radius: 2px;
+    //box-shadow: inset 0 1px 1px 0 rgba(38, 33, 33, 0.2);
+    caret-color: $primary;
+    padding: 5px;
   }
 
   label {
@@ -189,17 +361,21 @@ export default {
   }
 
   textarea {
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px 0 rgba(38, 33, 33, 0.2);
+    //border-radius: 2px;
+    //box-shadow: inset 0 2px 4px 0 rgba(38, 33, 33, 0.2);
   }
 
-  .bookingData {
+  .booking-data {
     width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
+    .separator {
+      min-height: 0;
+    }
 
     .picker {
       width: 100%;
@@ -211,7 +387,31 @@ export default {
       gap: 2em;
       margin-bottom: 2em;
 
+      .service-level-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 1em;
+        margin-top: 0.2em;
+        align-items: center;
+        justify-content: center;
+
+        .service-level {
+          background-color: $primary;
+          width: 4em;
+          border: 2px $primary solid;
+          border-radius: 4px;
+          padding: 5px;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(105%);
+          }
+        }
+      }
+
       .time-slots {
+        width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         border-radius: 5px;
@@ -219,6 +419,7 @@ export default {
 
         .interval {
           padding: 5px;
+
           &:hover {
             cursor: pointer;
           }
@@ -247,14 +448,41 @@ export default {
       }
     }
 
-    .bookingForm {
+    .booking-form {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.5em;
+      text-align: left;
+      justify-content: flex-start;
+      align-self: flex-start;
+
+      .contact-section {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        justify-content: space-between;
+
+        #name {
+          flex-grow: 1;
+        }
+
+        #telephone {
+          flex-grow: 1;
+        }
+      }
+
+      .address-section {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+      }
 
       #message {
         min-height: 10em;
+        width: 100%;
       }
     }
   }

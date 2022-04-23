@@ -1,5 +1,5 @@
 <template>
-  <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="5000"
+  <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="10000"
             :wrapAround="true" :snapAlign="'start'" :itemsToScroll="1" :transition="700">
     <slide v-for="slide in 9" :key="slide">
       <presentation :top-image="require(`@/assets/img/presentation/${slide}-before.jpg`)"

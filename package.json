@@ -13,7 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^2.0.6",
-    "@vuepic/vue-datepicker": "^3.0.0",
+    "@vuepic/vue-datepicker": "^3.1.1",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "lodash": "^4.17.21",

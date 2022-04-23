@@ -20,10 +20,14 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import _ from 'lodash';
 
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
 createApp(App)
   .use(store)
   .use(router)
   .use(_)
   .use(VueWindowSizePlugin)
   .use(VueAxios, axios)
+  .component('Datepicker', Datepicker)
   .mount('#app')

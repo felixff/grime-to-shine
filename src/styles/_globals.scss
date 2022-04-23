@@ -15,6 +15,12 @@
   opacity: 0;
 }
 
+.disabled {
+  pointer-events: none !important;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
 .fadeInOutAnimation {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -58,4 +64,61 @@
 .fixed {
   position: sticky !important;
   top: 0;
+}
+
+.bronze {
+  color: $primary;
+  font-weight: 600;
+  border-color: $bronze !important;
+  background-color: $bronze !important;
+
+  &.selected {
+    transform: scale(0.98);
+    color: $bronze !important;
+    background-color: $tertiary-brighter !important;
+  }
+}
+
+.silver {
+  color: $primary;
+  font-weight: 600;
+  border-color: $silver !important;
+  background-color: $silver !important;
+
+  &.selected {
+    transform: scale(0.98);
+    color: $silver !important;
+    background-color: $tertiary-brighter !important;
+  }
+}
+
+.gold {
+  color: $primary;
+  font-weight: 600;
+  border-color: $gold !important;
+  background-color: $gold !important;
+
+  &.selected {
+    transform: scale(0.98);
+    color: $gold !important;
+    background-color: $tertiary-brighter !important;
+  }
+}
+
+.extra {
+  color: $tertiary-calmer;
+  font-weight: 600;
+  border-color: $secondary !important;
+  background-color: $secondary !important;
+
+  &.selected {
+    transform: scale(0.98);
+    color: $secondary !important;
+    background-color: $tertiary-brighter !important;
+  }
+}
+
+.invalid {
+  border: 2px solid crimson;
+  animation: shake 0.1s;
 }

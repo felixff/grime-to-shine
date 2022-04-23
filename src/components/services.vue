@@ -137,6 +137,7 @@ export default {
   height: 100%;
   margin-bottom: 3em;
   align-items: center;
+  padding: 5px;
 
   .services-description {
     color: $tertiary-calmer;
@@ -150,14 +151,17 @@ export default {
     flex-wrap: wrap;
     gap: 2em;
     margin-top: 2em;
+    flex-grow: 1;
   }
 
   .extras {
     background-color: $primary-brighter;
     margin-inline: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    max-width: 22em;
+    border-radius: 5px;
+    max-width: 90%;
+    padding: 5px;
+    flex-grow: 1;
 
     .extra-services {
       display: flex;

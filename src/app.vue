@@ -272,7 +272,6 @@ export default {
       a {
         font-size: 2.2rem;
         color: $secondary;
-        //font-weight: bolder;
 
         &:hover {
           cursor: pointer;

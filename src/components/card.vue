@@ -1,7 +1,6 @@
 <template>
   <div class="card" :style="gradient">
-    <!--    <img loading="lazy" v-if="image !== null" :src="image" class="image" aria-label="hidden" alt="Service Type Image">-->
-    <div class="section-header__small service-title" :class="type !== null ? type : ''">{{ title }}</div>
+    <div class="section-header__small service-title" :class="type !== null ? `${type}-card` : ''">{{ title }}</div>
     <div v-if="content !== null" class="content">{{ content }}</div>
     <ul v-if="itemList !== undefined && itemList !== null && itemList.length > 0" class="item-list">
       <li v-for="(item, index) in itemList" :key="index" class="listItem"><i class="fas fa-soap"/> {{ item }}</li>
@@ -33,6 +32,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@media screen and (min-width: 1064px){
+  .card {
+    height: 30em;
+
+    .service-title {
+      align-self: flex-start;
+      margin-left: 0.5em;
+      margin-top: 0.2em;
+    }
+  }
+}
+
+@media screen and (max-width: 281px){
+  .card {
+    height: 48em !important;
+  }
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -45,16 +62,14 @@ export default {
   justify-content: flex-start;
   flex-direction: column;
   padding: 5px;
-  border-radius: 2.5%;
+  border-radius: 5px;
   background-color: $primary-brighter;
   position: relative;
-  background-image: linear-gradient(to bottom left, var(--gradient-color), $gold 20%, transparent 50%, transparent 100%);
-  background-image: -webkit-linear-gradient(to bottom left, $bronze, $bronze 20%, transparent 50%, transparent 100%);
 
   .service-title {
     align-self: flex-start;
-    margin-left: 0.5em;
-    margin-top: 0.2em;
+    margin-left: 0.25em;
+    margin-top: 0.1em;
     font-size: 2rem;
   }
 
@@ -102,15 +117,15 @@ export default {
     font-size: 2.2rem;
   }
 
-  .bronze {
+  .bronze-card {
     color: $bronze !important;
   }
 
-  .silver {
+  .silver-card {
     color: $silver !important;
   }
 
-  .gold {
+  .gold-card {
     color: $gold !important;
   }
 }

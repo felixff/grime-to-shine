@@ -1,5 +1,7 @@
 import {createStore} from 'vuex'
 import axios from "axios";
+import {toRaw} from "vue";
+// import _ from "lodash";
 
 const SET_EXISTING_BOOKINGS = 'setExistingBookings';
 const SET_BOOKING_ACTION_RESULT = 'setBookingActionResult';
@@ -15,24 +17,34 @@ export default createStore({
     saveScrollPosition(state, scrollPosition) {
       state.scrollPosition = scrollPosition;
     },
-    [SET_EXISTING_BOOKINGS](state, existingBookings) {
-      state.existingBookings = existingBookings.data;
+    [SET_EXISTING_BOOKINGS](state, data) {
+      state.existingBookings = toRaw(data.existingBookings);
     },
     [SET_BOOKING_ACTION_RESULT](state, bookingActionResult) {
-      state.bookingActionResult = bookingActionResult;
+      state.bookingActionResult = toRaw(bookingActionResult);
     }
   },
   actions: {
     // eslint-disable-next-line
     getAllBookings({commit}) {
       axios.get('/api/api.php/booking/list').then((response) => {
-        commit(SET_EXISTING_BOOKINGS, response)
+        commit(SET_EXISTING_BOOKINGS, response.data);
       }, () => {
         console.log('Not connected');
       })
     },
     // eslint-disable-next-line
-    async requestBooking({state, dispatch, commit}, {name, address, postcode, telephone, email, date, time, message}) {
+    async requestBooking({state, dispatch, commit}, {
+      name,
+      address,
+      postcode,
+      telephone,
+      email,
+      date,
+      time,
+      message,
+      serviceLevel
+    }) {
       axios.post('/api/api.php/booking/add', {
         date: date,
         time: time,
@@ -41,12 +53,14 @@ export default createStore({
         telephone: telephone,
         address: address,
         postcode: postcode,
-        message: message
-      }).then(() => {
+        message: message,
+        serviceLevel: serviceLevel
+      }).then((response) => {
         dispatch('getAllBookings');
-        commit(SET_EXISTING_BOOKINGS, 'Your booking request has been submitted');
+        console.log(response.data);
+        commit(SET_BOOKING_ACTION_RESULT, `Your booking request for ${response.data.start} has been submitted`);
       }, () => {
-        commit(SET_EXISTING_BOOKINGS, 'Your booking request has failed, please try again!')
+        commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       })
     },
   },
