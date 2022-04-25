@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import axios from "axios";
 import {toRaw} from "vue";
+import moment from "moment";
 // import _ from "lodash";
 
 const SET_EXISTING_BOOKINGS = 'setExistingBookings';
@@ -57,8 +58,8 @@ export default createStore({
         serviceLevel: serviceLevel
       }).then((response) => {
         dispatch('getAllBookings');
-        console.log(response.data);
-        commit(SET_BOOKING_ACTION_RESULT, `Your booking request for ${response.data.start} has been submitted`);
+        let bookingDate = new moment(response.data.start.dateTime);
+        commit(SET_BOOKING_ACTION_RESULT, `Your booking request for ${bookingDate.format('DD.MM.YYYY')} at ${bookingDate.format('HH:mm')} has been successfully submitted!`);
       }, () => {
         commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       })

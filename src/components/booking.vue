@@ -1,5 +1,6 @@
 <template>
   <div class="container__booking-system">
+    <div class="notification-text" style="margin-top: 0">Bookings are subject to approval, please only consider your booking request dealt with when you receive communication from us.</div>
     <div class="booking-data">
       <div class="picker">
         <div class="input-field-container">
@@ -92,10 +93,10 @@
         </div>
       </div>
     </div>
+    <div v-show="name === null && bookingActionResult !== null" class="notification-text">{{ bookingActionResult }}</div>
     <button type="submit" class="text-white font-bold py-1 px-5 rounded" @click.prevent="requestBooking()">Request
       Booking
     </button>
-    <div v-show="name === null && bookingActionResult !== null" class="action-result">{{ bookingActionResult }}</div>
   </div>
 </template>
 <script>
@@ -180,6 +181,7 @@ export default {
   watch: {
     date: {
       handler() {
+        this.$store.dispatch('getAllBookings');
         this.setServiceLevel(this.serviceLevel);
       },
       immediate: true
@@ -497,6 +499,12 @@ export default {
     &:hover {
       background-color: $secondary;
     }
+  }
+
+  .notification-text {
+    padding: 5px;
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
 }
 </style>
