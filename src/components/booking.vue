@@ -243,7 +243,7 @@ export default {
 
       if (bookingsForTheDay.length > 0) {
         _.forEach(bookingsForTheDay, booking => {
-          if (booking.start <= timeSlot && timeSlot <= booking.end) {
+          if (booking.start <= timeSlot && timeSlot < booking.end) {
             found = true;
           }
         })
