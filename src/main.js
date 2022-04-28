@@ -23,11 +23,14 @@ import _ from 'lodash';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+import Popper from "vue3-popper";
+
 createApp(App)
   .use(store)
   .use(router)
   .use(_)
   .use(VueWindowSizePlugin)
   .use(VueAxios, axios)
+  .component("Popper", Popper)
   .component('Datepicker', Datepicker)
   .mount('#app')

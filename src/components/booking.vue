@@ -1,6 +1,8 @@
 <template>
   <div class="container__booking-system">
-    <div class="notification-text" style="margin-top: 0">Bookings are subject to approval, please only consider your booking request dealt with when you receive communication from us.</div>
+    <div class="notification-text" style="margin-top: 0">Bookings are subject to approval, please only consider your
+      booking request confirmed when you receive communication from us.
+    </div>
     <div class="booking-data">
       <div class="picker">
         <div class="input-field-container">
@@ -40,6 +42,7 @@
         </div>
         <div class="input-field-container">
           <label for="time-slots">Available Slots</label>
+
           <div id="time-slots" class="time-slots"
                :class="[{'disabled' : date === null}, { 'invalid': missingData.includes('date') && enableValidation}]">
             <template v-for="(hour, index) in workHours" :key="index">
@@ -58,34 +61,47 @@
             </template>
           </div>
         </div>
+        <transition>
+          <div class="input-field-container" :class="{'hidden' : date !== null}">
+            Select a date above to see available booking slots
+          </div>
+        </transition>
       </div>
       <div class="separator"></div>
       <div class="booking-form">
         <div class="contact-section">
           <div class="input-field-container">
             <label for="name">Name</label>
-            <input type="text" v-model="name" :class="{ 'invalid' : missingData.includes('name') && enableValidation}" id="name" maxlength="60" placeholder="John Doe" required>
+            <input type="text" v-model="name" :class="{ 'invalid' : missingData.includes('name') && enableValidation}"
+                   id="name" maxlength="60" placeholder="John Doe" required>
           </div>
           <div class="input-field-container">
             <label for="telephone">Telephone</label>
-            <input type="tel" v-model="telephone" :class="{ 'invalid' : missingData.includes('telephone') && enableValidation}" id="telephone" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
+            <input type="tel" v-model="telephone"
+                   :class="{ 'invalid' : missingData.includes('telephone') && enableValidation}" id="telephone"
+                   pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
                    placeholder="07777777777" required>
           </div>
         </div>
         <div class="address-section">
           <div class="input-field-container">
             <label for="address">Address</label>
-            <input type="text" v-model="address" :class="{ 'invalid' : missingData.includes('address') && enableValidation}" id="address" maxlength="60" placeholder="Booking Address"
+            <input type="text" v-model="address"
+                   :class="{ 'invalid' : missingData.includes('address') && enableValidation}" id="address"
+                   maxlength="60" placeholder="Booking Address"
                    required>
           </div>
           <div class="input-field-container">
             <label for="postcode">Postcode</label>
-            <input type="text" v-model="postcode" :class="{ 'invalid' : missingData.includes('postcode') && enableValidation}" id="postcode" maxlength="60" placeholder="IP1 11XX" required>
+            <input type="text" v-model="postcode"
+                   :class="{ 'invalid' : missingData.includes('postcode') && enableValidation}" id="postcode"
+                   maxlength="60" placeholder="IP1 11XX" required>
           </div>
         </div>
         <div class="input-field-container">
           <label for="email">Email</label>
-          <input type="email" v-model="email" :class="{ 'invalid' : missingData.includes('email') && enableValidation}" id="email" maxlength="100" placeholder="email@placeholder.com" required>
+          <input type="email" v-model="email" :class="{ 'invalid' : missingData.includes('email') && enableValidation}"
+                 id="email" maxlength="100" placeholder="email@placeholder.com" required>
         </div>
         <div class="input-field-container">
           <label for="message">Message</label>
@@ -93,7 +109,10 @@
         </div>
       </div>
     </div>
-    <div v-show="name === null && bookingActionResult !== null" class="notification-text">{{ bookingActionResult }}</div>
+    <div v-show="name === null && bookingActionResult !== null" class="notification-text">{{
+        bookingActionResult
+      }}
+    </div>
     <button type="submit" class="text-white font-bold py-1 px-5 rounded" @click.prevent="requestBooking()">Request
       Booking
     </button>
@@ -303,8 +322,8 @@ export default {
 }
 
 .selected {
-  background-color: $secondary !important;
-  color: $tertiary-calmer !important;
+  background-color: $select !important;
+  color: $tertiary-brighter !important;
 }
 
 .serviceSelected {
@@ -345,6 +364,10 @@ export default {
   svg {
     display: none !important;
   }
+}
+
+.inline-block {
+  width: 100% !important;
 }
 
 .container__booking-system {

@@ -28,11 +28,16 @@ export default createStore({
   actions: {
     // eslint-disable-next-line
     getAllBookings({commit}) {
-      axios.get('/api/api.php/booking/list').then((response) => {
-        commit(SET_EXISTING_BOOKINGS, response.data);
-      }, () => {
-        console.log('Not connected');
-      })
+      // axios.get('/api/api.php/booking/list?a=test').then((response) => {
+      //   commit(SET_EXISTING_BOOKINGS, response.data);
+      // }, () => {
+      //   console.log('Not connected');
+      // })
+      axios.post('/api/api.php/book', {aaaaaaaaaaaa: 'AAAAAAAAAAAAAAAA'}, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+      },)
     },
     // eslint-disable-next-line
     async requestBooking({state, dispatch, commit}, {
@@ -64,6 +69,17 @@ export default createStore({
         commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       })
     },
+    verifyReCaptcha() {
+      axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=&response=`,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+          },
+        },
+      );
+    }
   },
   modules: {}
 })
