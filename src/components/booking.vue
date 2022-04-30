@@ -20,6 +20,7 @@
                       :class="{'dp__icon-hidden': date !== null}"
                       :clearable="true"
                       :autoApply="true"
+                      :startTime="{'hours': 12}"
                       style="width: 100%"
           >
           </datepicker>
