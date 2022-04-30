@@ -19,6 +19,7 @@
                       :format="'dd/MM/yyyy'"
                       :class="{'dp__icon-hidden': date !== null}"
                       :clearable="true"
+                      :autoApply="true"
                       style="width: 100%"
           >
           </datepicker>
@@ -178,7 +179,7 @@ export default {
         missingFields.push('name');
       }
 
-      if (this.telephone === null) {
+      if (this.telephone === null || !this.isPhoneValid) {
         missingFields.push('telephone');
       }
 
@@ -195,6 +196,9 @@ export default {
       }
 
       return missingFields;
+    },
+    isPhoneValid() {
+      return /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/.test(this.telephone);
     }
   },
   watch: {
@@ -224,15 +228,12 @@ export default {
     },
     async recaptcha() {
       await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('requestBooking');
-
-      return this.$store.dispatch('verify', {
-        tokenToVerify: token
-      });
+      return this.$recaptcha('requestBooking');
     },
-    requestBooking() {
-      let tokenVerified = this.recaptcha();
-      if (this.missingData.length >= 1 || !tokenVerified) {
+    async requestBooking() {
+      let token = await this.recaptcha();
+      // eslint-disable-next-line no-unreachable
+      if (this.missingData.length >= 1 || !token) {
         this.enableValidation = true;
         return;
       }
@@ -247,6 +248,7 @@ export default {
         address: this.address,
         postcode: this.postcode,
         serviceLevel: this.serviceLevel,
+        token: token
       })
 
       this.name = null;

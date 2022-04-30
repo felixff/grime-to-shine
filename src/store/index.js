@@ -42,7 +42,8 @@ export default createStore({
       date,
       time,
       message,
-      serviceLevel
+      serviceLevel,
+      token
     }) {
       axios.post('/api/api.php/book', {
         date: date,
@@ -53,24 +54,20 @@ export default createStore({
         address: address,
         postcode: postcode,
         message: message,
-        serviceLevel: serviceLevel
+        serviceLevel: serviceLevel,
+        token: token
       }).then((response) => {
         dispatch('getAllBookings');
         let bookingDate = new moment(response.data.start.dateTime);
         commit(SET_BOOKING_ACTION_RESULT, `Your booking request for ${bookingDate.format('DD.MM.YYYY')} at ${bookingDate.format('HH:mm')} has been successfully submitted!`);
       }, () => {
         commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
+      }).catch((error) => {
+        if(process.env.NO)
+        console.log(error)
+        commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       })
     },
-    // eslint-disable-next-line
-    verify({state, dispatch, commit}, {tokenToVerify}) {
-      axios.post(
-        `/api/api.php/verify`,
-        {
-          token: tokenToVerify
-        }
-      );
-    }
   },
   modules: {}
 })
