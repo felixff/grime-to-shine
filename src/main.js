@@ -23,11 +23,21 @@ import _ from 'lodash';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+import {VueReCaptcha} from 'vue-recaptcha-v3'
+
+let options = {
+  siteKey: process.env.NODE_ENV === 'development' ? process.env.VUE_APP_KEY_DEV : process.env.VUE_APP_KEY_PROD,
+  loaderOptions: {
+    autoHideBadge: true
+  }
+}
+
 createApp(App)
   .use(store)
   .use(router)
   .use(_)
   .use(VueWindowSizePlugin)
   .use(VueAxios, axios)
+  .use(VueReCaptcha, options)
   .component('Datepicker', Datepicker)
   .mount('#app')
