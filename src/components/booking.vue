@@ -200,8 +200,10 @@ export default {
   watch: {
     date: {
       handler() {
-        this.$store.dispatch('getAllBookings');
-        this.setServiceLevel(this.serviceLevel);
+        if (this.date !== null) {
+          this.$store.dispatch('getAllBookings');
+          this.setServiceLevel(this.serviceLevel);
+        }
       },
       immediate: true
     }
@@ -220,8 +222,17 @@ export default {
         this.backgroundColor = '#6d431d'
       }
     },
+    async recaptcha() {
+      await this.$recaptchaLoaded()
+      const token = await this.$recaptcha('requestBooking');
+
+      return this.$store.dispatch('verify', {
+        tokenToVerify: token
+      });
+    },
     requestBooking() {
-      if (this.missingData.length >= 1) {
+      let tokenVerified = this.recaptcha();
+      if (this.missingData.length >= 1 || !tokenVerified) {
         this.enableValidation = true;
         return;
       }
