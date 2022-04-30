@@ -63,8 +63,9 @@ export default createStore({
       }, () => {
         commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       }).catch((error) => {
-        if(process.env.NO)
-        console.log(error)
+        if(process.env.NODE_ENV === 'development') {
+          console.log(error)
+        }
         commit(SET_BOOKING_ACTION_RESULT, 'Your booking request has failed, please try again!')
       })
     },
