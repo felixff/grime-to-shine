@@ -2,22 +2,19 @@
   <div class="container__home">
     <div class="van-image">
       <img
-          loading="lazy"
-          src="@/assets/img/slides/van-right.jpg"
+          src="@/assets/img/slides/van-right.webp"
           alt="Van Image 2"
           class="fadeInOutAnimation"
           :class="{ transparent: imageToShow !== 1 }"
       />
       <img
-          loading="lazy"
-          src="@/assets/img/slides/suv.jpg"
+          src="@/assets/img/slides/suv.webp"
           alt="Van Image 3"
           class="fadeInOutAnimation"
           :class="{ transparent: imageToShow !== 2 }"
       />
       <img
-          loading="lazy"
-          src="@/assets/img/slides/merc.png"
+          src="@/assets/img/slides/merc.webp"
           alt="Van Image 3"
           class="fadeInOutAnimation"
           :class="{ transparent: imageToShow !== 3 }"
@@ -25,9 +22,9 @@
       <div class="main-text">
         <span class="main-text__header">Mobile Valeting Service</span><br/>
         Hertfordshire | Bedfordshire | Buckinghamshire<br/>
-        +44 7902 532850 | email@grimetoshinevaleting.co.uk<br/>
+        07902 532850 | email@grimetoshinevaleting.co.uk<br/>
       </div>
-      <a class="call-to-action" :class="{ hidden: currentScrollPosition > 1 || $windowWidth < 1064}"
+      <a id="scroll-to-content" class="call-to-action" :class="{ hidden: currentScrollPosition > 1 || $windowWidth < 1064}"
          href="#about">
         <i class="fas fa-chevron-down bounce"></i>
       </a>
@@ -82,9 +79,9 @@ export default {
       ticking: false,
       showChevron: true,
       vanImages: [
-        "@/assets/img/van1.jpg",
-        "@/assets/img/van2.jpg",
-        "@/assets/img/van3.jpg",
+        "@/assets/img/van1.webp",
+        "@/assets/img/van2.webp",
+        "@/assets/img/van3.webp",
       ],
       presentationImages: [],
     };

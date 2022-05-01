@@ -13,7 +13,7 @@
         contracts with car garages or events that take place locally with in us.
       </div>
     </div>
-    <img loading="lazy" src="@/assets/img/about.jpg" alt="About Image" class="image-about"/>
+    <img loading="lazy" src="@/assets/img/about.webp" alt="About Image" class="image-about"/>
   </div>
 </template>
 

@@ -133,19 +133,22 @@ a {
 /* Fonts */
 @font-face {
   font-family: 'DrippingMarker';
-  src: url('@/styles/fonts/a_dripping_marker/adrip1.woff') format('woff'), url('@/styles/fonts/a_dripping_marker/adrip1.ttf') format('ttf');
+  src: local('Monserrat'), url('@/styles/fonts/a_dripping_marker/adrip1.woff') format('woff'), url('@/styles/fonts/a_dripping_marker/adrip1.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Grafitty';
-  src: url('@/styles/fonts/grafitty/Grafitty.woff') format('woff'), url('@/styles/fonts/grafitty/grafitty.ttf') format('ttf');
+  src: local('Monserrat'), url('@/styles/fonts/grafitty/Grafitty.woff') format('woff'), url('@/styles/fonts/grafitty/grafitty.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Grafitty-Outline';
-  src: url('@/styles/fonts/grafitty/Grafitty outline.woff') format('woff');
+  src: local('Monserrat'), url('@/styles/fonts/grafitty/Grafitty outline.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }

@@ -2,8 +2,11 @@
   <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="10000"
             :wrapAround="true" :snapAlign="'start'" :itemsToScroll="1" :transition="700">
     <slide v-for="slide in 9" :key="slide">
-      <presentation :top-image="require(`@/assets/img/presentation/${slide}-before.jpg`)"
-                    :bottom-image="require(`@/assets/img/presentation/${slide}-after.jpg`)"></presentation>
+      <presentation :top-image="require(`@/assets/img/presentation/${slide}-before.webp`)"
+                    :top-id="slide"
+                    :bottom-image="require(`@/assets/img/presentation/${slide}-after.webp`)"
+                    :bottom-id="slide * 10"
+      ></presentation>
     </slide>
 
     <template #addons>

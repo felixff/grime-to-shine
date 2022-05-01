@@ -12,13 +12,13 @@
         <div class="socials__footer">Give us a like & follow!</div>
         <div class="socials__footer">Giveaways and deals will be uploaded to our socials.</div>
         <div class="socials__footer">
-          <a href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
+          <a id="facebook-bottom-link" href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
             <i class="fab fa-facebook footer__social"></i>
           </a>
-          <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
+          <a id="instagram-bottom-link" href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
             <i class="fab fa-instagram footer__social"></i>
           </a>
-          <a href="https://snapchat.com/add/Grimetashine" target="_blank">
+          <a id="snapchat-bottom-link" href="https://snapchat.com/add/Grimetashine" target="_blank">
             <i class="fab fa-snapchat footer__social"></i>
           </a>
         </div>

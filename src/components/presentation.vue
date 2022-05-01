@@ -1,15 +1,15 @@
 <template>
   <div class="container__presentation">
     <div class="image-stack__item--top" :class="{'zoomed-in' : hoveringTop}">
-      <label for="before" :class="{hidden : hoveringTop}">Before</label>
-      <img loading="lazy" id="before" :src="topImage" alt="Top Gallery Image" @mouseover="hoveringTop = true"
+      <label :for="'before-' + topId" :class="{hidden : hoveringTop}">Before</label>
+      <img loading="lazy" :id="'before-' + topId" :src="topImage" alt="Car before cleaning" @mouseover="hoveringTop = true"
            @mouseleave="hoveringTop = false" @click="hoveringTop = !hoveringTop">
     </div>
     <div class="image-stack__item--bottom" :class="{'zoomed-in' : hoveringBottom}">
-      <img loading="lazy" id="after" :src="bottomImage" alt="Bottom Gallery Image"
+      <img loading="lazy" :id="'after-' + bottomId" :src="bottomImage" alt="Car after cleaning"
            @mouseenter="hoveringBottom = true" @mouseleave="hoveringBottom = false"
            @click="hoveringBottom = !hoveringBottom">
-      <label for="after" :class="{hidden : hoveringBottom}">After</label>
+      <label :for="'after-' + bottomId" :class="{hidden : hoveringBottom}">After</label>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 export default {
   // eslint-disable-next-line
   name: "presentation",
-  props: ['topImage', 'bottomImage'],
+  props: ['topImage', 'bottomImage', 'topId', 'bottomId'],
   data() {
     return {
       hoveringTop: false,

@@ -23,27 +23,27 @@
       <div v-if="closed === false && windowWidthInternal < 1064" class="close-button" @click="closeMenu">
         <i class="fas fa-times close"></i>
       </div>
-      <a href="/" @click="closeMenu">Home</a>
-      <a href="#about" @click="closeMenu">About</a>
-      <a href="#services" @click="closeMenu">Services</a>
+      <a id="home-section-link" href="/" @click="closeMenu">Home</a>
+      <a id="about-section-link" href="#about" @click="closeMenu">About</a>
+      <a id="services-section-link" href="#services" @click="closeMenu">Services</a>
     </nav>
     <div class="logo">
-      <img loading="lazy" src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
+      <img src="@/assets/img/grime-to-shine-logo.webp" alt="Company Logo"/>
     </div>
     <div class="book-socials">
       <div class="socials">
-        <a href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
+        <a id="facebook-top-link" href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
           <i class="fab fa-facebook"></i>
         </a>
-        <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
+        <a id="instagram-top-link" href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
           <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://snapchat.com/add/Grimetashine" target="_blank">
+        <a id="snapchat-top-link" href="https://snapchat.com/add/Grimetashine" target="_blank">
           <i class="fab fa-snapchat"></i>
         </a>
       </div>
       <div class="book">
-        <a href="#bookings">Book Now</a>
+        <a id="booking-section-link" href="#bookings">Book Now</a>
       </div>
     </div>
   </div>
