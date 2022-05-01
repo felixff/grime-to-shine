@@ -44,7 +44,6 @@
         </div>
         <div class="input-field-container">
           <label for="time-slots">Available Slots</label>
-
           <div id="time-slots" class="time-slots"
                :class="[{'disabled' : date === null}, { 'invalid': missingData.includes('date') && enableValidation}]">
             <template v-for="(hour, index) in workHours" :key="index">
@@ -64,7 +63,7 @@
           </div>
         </div>
         <transition>
-          <div class="input-field-container" :class="{'hidden' : date !== null}">
+          <div class="input-field-container" :class="{'hidden' : date !== null}" style="align-self: center!important;">
             Select a date above to see available booking slots
           </div>
         </transition>
@@ -111,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div v-show="name === null && bookingActionResult !== null" class="notification-text">{{
+    <div v-show="name === null && bookingActionResult !== null" class="notification-text booking-result">{{
         bookingActionResult
       }}
     </div>
@@ -232,6 +231,7 @@ export default {
       return this.$recaptcha('requestBooking');
     },
     async requestBooking() {
+      this.$store.dispatch('setState', {currentState: 'LOADING'});
       let token = await this.recaptcha();
       // eslint-disable-next-line no-unreachable
       if (this.missingData.length >= 1 || !token) {
@@ -310,7 +310,7 @@ export default {
       }
 
       .picker {
-        width: 15% !important;
+        width: 30% !important;
         display: flex;
         flex-direction: column;
         align-self: flex-start;
@@ -539,9 +539,15 @@ export default {
   }
 
   .notification-text {
+    color: $primary;
     padding: 5px;
     margin-top: 2em;
     margin-bottom: 2em;
+
+    &.booking-result{
+      font-size: 1rem;
+      font-weight: bold;
+    }
   }
 }
 </style>

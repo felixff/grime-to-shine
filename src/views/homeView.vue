@@ -158,7 +158,6 @@ export default {
     position: relative;
 
     img {
-      //display: none;
       width: 100%;
       position: absolute;
       -webkit-transition: opacity 1s ease-in-out;

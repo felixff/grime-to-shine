@@ -7,6 +7,12 @@
     >
       <i class="fas fa-bars"></i>
     </div>
+    <div v-if="showOverlay" class="overlay">
+      <div class="overlay__title">
+        Submitting your request
+      </div>
+      <i class="fas fa-spinner fa-pulse"></i>
+    </div>
     <nav
         :class="{
           'navbar-not-visible': hideAway && alwaysVisible === false,
@@ -78,6 +84,9 @@ export default {
     hideAway() {
       return this.windowWidthInternal < 1000 && this.closed === true;
     },
+    showOverlay() {
+      return this.$store.state.state === 'LOADING';
+    }
   },
   methods: {
     hideNavbar() {
@@ -122,6 +131,30 @@ export default {
   color: #2c3e50;
   position: relative;
   scroll-behavior: smooth;
+}
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1,	1,	1, 0.8);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+
+  .overlay__title {
+    color: $tertiary_brighter;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+  }
+
+  .fa-spinner {
+    font-size: 3rem;
+    color: $tertiary-brighter;
+  }
 }
 
 .navbar {
@@ -251,7 +284,6 @@ export default {
     a {
       font-size: 1.6rem;
       color: $secondary;
-      //font-weight: bolder;
 
       &:hover {
         cursor: pointer;
