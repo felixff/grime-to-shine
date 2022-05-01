@@ -236,6 +236,7 @@ export default {
       // eslint-disable-next-line no-unreachable
       if (this.missingData.length >= 1 || !token) {
         this.enableValidation = true;
+        this.$store.dispatch('setState', {currentState: 'READY'});
         return;
       }
 
