@@ -7,6 +7,12 @@
     >
       <i class="fas fa-bars"></i>
     </div>
+    <div v-if="showOverlay" class="overlay">
+      <div class="overlay__title">
+        Submitting your request
+      </div>
+      <i class="fas fa-spinner fa-pulse"></i>
+    </div>
     <nav
         :class="{
           'navbar-not-visible': hideAway && alwaysVisible === false,
@@ -17,27 +23,27 @@
       <div v-if="closed === false && windowWidthInternal < 1064" class="close-button" @click="closeMenu">
         <i class="fas fa-times close"></i>
       </div>
-      <a href="/" @click="closeMenu">Home</a>
-      <a href="#about" @click="closeMenu">About</a>
-      <a href="#services" @click="closeMenu">Services</a>
+      <a id="home-section-link" href="/" @click="closeMenu">Home</a>
+      <a id="about-section-link" href="#about" @click="closeMenu">About</a>
+      <a id="services-section-link" href="#services" @click="closeMenu">Services</a>
     </nav>
     <div class="logo">
-      <img loading="lazy" src="@/assets/img/grime-to-shine-logo.png" alt="Company Logo"/>
+      <img src="@/assets/img/grime-to-shine-logo.webp" alt="Company Logo"/>
     </div>
     <div class="book-socials">
       <div class="socials">
-        <a href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
+        <a id="facebook-top-link" href="https://facebook.com/GrimeToShineValeting2022/" target="_blank">
           <i class="fab fa-facebook"></i>
         </a>
-        <a href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
+        <a id="instagram-top-link" href="https://instagram.com/grimetoshine_valeting?igshid=YmMyMTA2M2Y=" target="_blank">
           <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://snapchat.com/add/Grimetashine" target="_blank">
+        <a id="snapchat-top-link" href="https://snapchat.com/add/Grimetashine" target="_blank">
           <i class="fab fa-snapchat"></i>
         </a>
       </div>
       <div class="book">
-        <a href="#bookings">Book Now</a>
+        <a id="booking-section-link" href="#bookings">Book Now</a>
       </div>
     </div>
   </div>
@@ -78,6 +84,9 @@ export default {
     hideAway() {
       return this.windowWidthInternal < 1000 && this.closed === true;
     },
+    showOverlay() {
+      return this.$store.state.state === 'LOADING';
+    }
   },
   methods: {
     hideNavbar() {
@@ -122,6 +131,30 @@ export default {
   color: #2c3e50;
   position: relative;
   scroll-behavior: smooth;
+}
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1,	1,	1, 0.8);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+
+  .overlay__title {
+    color: $tertiary_brighter;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+  }
+
+  .fa-spinner {
+    font-size: 3rem;
+    color: $tertiary-brighter;
+  }
 }
 
 .navbar {
@@ -251,7 +284,6 @@ export default {
     a {
       font-size: 1.6rem;
       color: $secondary;
-      //font-weight: bolder;
 
       &:hover {
         cursor: pointer;
