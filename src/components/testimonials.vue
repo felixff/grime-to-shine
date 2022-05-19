@@ -1,9 +1,9 @@
 <template>
   <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="8000"
-            :wrapAround="true" :snapAlign="'start'" :itemsToScroll="0" :transition="400">
+            :wrapAround="true" :snapAlign="'start'" :itemsToScroll="1" :transition="400">
     <slide v-for="(testimony, index) in testimonials" :key="index">
       <div class="testimony-wrapper">
-        <div class="testimony">❝ {{ testimony.content }} ❞</div>
+        <div class="testimony">❝ {{ testimony.content }}❞</div>
         <div class="name">- {{ testimony.name }}</div>
       </div>
     </slide>
