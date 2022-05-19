@@ -1,10 +1,10 @@
 <template>
-  <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="7000"
+  <carousel class="presentation-carousel" :items-to-show="getItemsToShow($windowWidth)" :autoplay="8000"
             :wrapAround="true" :snapAlign="'start'" :itemsToScroll="0" :transition="400">
     <slide v-for="(testimony, index) in testimonials" :key="index">
       <div class="testimony-wrapper">
-        <div class="testimony">"{{ testimony.content }}"</div>
-        <div class="name">- {{testimony.name}}</div>
+        <div class="testimony">❝ {{ testimony.content }} ❞</div>
+        <div class="name">- {{ testimony.name }}</div>
       </div>
     </slide>
 
@@ -34,20 +34,31 @@ export default {
     return {
       testimonials: [
         {
-          content: 'Nice work on your Car valeting. Just what I was looking for.',
-          name: 'Harriett V.'
+          content: 'Wow what an incredible service provided, literally gone through the whole vehicle with a fine tooth ' +
+              'comb. Would highly recommend Grime To Shine and we will be using them for all our cleaning going forward.',
+          name: 'L. Wilkinson'
         },
         {
-          content: 'It\'s really wonderful. Car valeting has completely surpassed our expectations.',
-          name: 'Elfreda Q.'
+          content: 'Used Grime To Shine for the first time. Will definitely be using again. My car was pretty awful from ' +
+              'muddy football and helping on my sisters farm. It now looks like a new car again. Professional service and ' +
+              'great rates, would highly recommend.',
+          name: 'K. Douglas'
         },
         {
-          content: 'Really good. I will refer everyone I know.',
-          name: 'Dorette G.'
+          content: 'Grime To Shine travelled 45 minutes to help me with an awful smell in my car. They did an excellent job! 100% recommend them to anyone.',
+          name: 'J. Newman'
         },
         {
-          content: 'Car valeting has completely surpassed our expectations. You guys rock!',
-          name: 'Abigale D.'
+          content: 'Had my Mercedes CLA cleaned today and i am very happy with the service. Would 100% recommend to family and friends. Will be using your service again, thanks.',
+          name: 'V. Patel'
+        },
+        {
+          content: 'My car is now shining and very clean both inside and outside. I would highly recommend Luca to clean your car. He is very professional with a great eye for detail. My car looks like new again!',
+          name: 'B. Amos'
+        },
+        {
+          content: 'I will definitely be back to Grime To Shine! Superb service from someone who knows what he is doing. I am extremely satisfied with the result and quality/price ratio is great!',
+          name: 'D. Lucchesi'
         },
       ]
     }
@@ -61,9 +72,9 @@ export default {
     getItemsToShow(windowWidth) {
       if (windowWidth > 1700) {
         return 3;
-      } else if(windowWidth > 1160) {
-        return 2; }
-      else {
+      } else if (windowWidth > 1160) {
+        return 2;
+      } else {
         return 1;
       }
     }
@@ -82,10 +93,15 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
+    height: 100% !important;
 
     .testimony {
       font-style: italic;
+    }
+
+    .name {
+      align-self: flex-end;
     }
   }
 
@@ -96,6 +112,12 @@ export default {
   .carousel__track {
     //gap: 2em;
   }
+}
+
+.carousel__slide {
+  padding: 10px !important;
+  display: flex !important;
+  align-items: flex-start !important;
 }
 
 .carousel__pagination-button {
